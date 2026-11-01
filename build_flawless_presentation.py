@@ -413,8 +413,8 @@ for shape in list(s9.shapes):
         set_p(p0, "🔗 Demo, Kod ve Teslim Dosyaları", size=18, bold=True, color=C_NAVY, space_after=8)
         
         links = [
-            ("🌐 Web / HTML5 Sürümü (Tarayıcı)", "Masaüstü: Eco-Grid-2050-Web.zip (Yerel_Web_Test.bat ile anında çalışır)"),
-            ("💻 Windows Desktop Build (PC)", "Masaüstü: Eco-Grid-2050-Windows.zip (EcoGrid2050.exe)"),
+            ("🌐 Canlı Tarayıcı Oyunu (Web Demo)", "https://serhatvs.github.io/eco-grid-2050/"),
+            ("💻 Windows & Web Çevrimdışı Paketler", "Masaüstü: Eco-Grid-2050-Windows.zip & Web.zip"),
             ("🎬 720p HD Oynanış Videosu", "Masaüstü: Eco-Grid-2050-Oynanis-Videosu.mp4 (26 saniye)"),
             ("🐙 GitHub Açık Kaynak Deposu", "https://github.com/serhatvs/eco-grid-2050"),
             ("📄 Oyun Tasarım Dokümantasyonu", "GDD & İklim Matematik Modeli proje dizinindedir.")
@@ -462,14 +462,16 @@ for shape in list(s10.shapes):
         shape.left = int(6.4 * 914400)
         shape.top = int(3.55 * 914400)
         shape.width = int(5.4 * 914400)
-        shape.height = int(0.9 * 914400)
+        shape.height = int(1.1 * 914400)
         tf = shape.text_frame
         tf.word_wrap = True
         tf.clear()
         p1 = tf.paragraphs[0]
-        set_p(p1, "📧 iletisim@gmail.com", size=16, color=C_DARK, space_after=4)
+        set_p(p1, "📧 iletisim@gmail.com", size=15, color=C_DARK, space_after=3)
         p2 = tf.add_paragraph()
-        set_p(p2, "🐙 https://github.com/serhatvs/eco-grid-2050", size=15, bold=True, color=C_TEAL)
+        set_p(p2, "🌐 https://serhatvs.github.io/eco-grid-2050/", size=14, bold=True, color=C_TEAL, space_after=3)
+        p3 = tf.add_paragraph()
+        set_p(p3, "🐙 https://github.com/serhatvs/eco-grid-2050", size=14, bold=True, color=C_NAVY)
 
 prs.save(output_path)
 print("FLAWLESS PRESENTATION SAVED SUCCESSFULLY!")

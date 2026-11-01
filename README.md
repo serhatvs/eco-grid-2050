@@ -1,5 +1,6 @@
 # 🌿 Eco-Grid: 2050
 
+[![Live Demo](https://img.shields.io/badge/Play_Online-GitHub_Pages-brightgreen?logo=githubpages&logoColor=white)](https://serhatvs.github.io/eco-grid-2050/)
 [![Godot Engine](https://img.shields.io/badge/Godot-4.3%2B-478cbf?logo=godotengine&logoColor=white)](https://godotengine.org)
 [![Theme](https://img.shields.io/badge/COP31-Net--Zero%202050-2ecc71)](https://cop31.org)
 [![Genre](https://img.shields.io/badge/Genre-Solarpunk%20Roguelike%20City--Builder-f39c12)](#)
@@ -7,6 +8,8 @@
 
 > **GameUP Türkiye & COP31 İklim Temalı Oyun Hackathonu Projesi**  
 > *"COP31 Antalya vizyonuyla geliştirilen; enerji, su ve gıda şebekelerini dengeleyerek şehri net-sıfır emisyona ulaştırdığınız Solarpunk roguelike kart ve izometrik şehir kurma stratejisi."*
+
+👉 **[Hemen Tarayıcıda Oyna (Canlı Web Demo)](https://serhatvs.github.io/eco-grid-2050/)** 👈
 
 ---
 
@@ -53,7 +56,7 @@ Proje **Godot Engine 4.3+ / 4.7+** ile geliştirilmiştir ve harici bir kütüph
 
 1. Depoyu klonlayın:
    ```bash
-   git clone https://github.com/<kullanici-adiniz>/eco-grid-2050.git
+   git clone https://github.com/serhatvs/eco-grid-2050.git
    cd eco-grid-2050
    ```
 2. **Godot Engine**'i açın, `Import` seçeneğiyle `project.godot` dosyasını seçin.
