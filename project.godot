@@ -1,0 +1,25 @@
+config_version=5
+
+[application]
+
+config/name="Eco-Grid: 2050"
+run/main_scene="res://Main.tscn"
+config/icon="res://assets/sprites/building_cop31_center.png"
+config/features=PackedStringArray("4.3", "GL Compatibility")
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep"
+
+[gui]
+
+theme/custom_font="res://assets/fonts/Outfit.ttf"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+renderer/rendering_method.web="gl_compatibility"

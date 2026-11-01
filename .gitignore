@@ -1,0 +1,26 @@
+# Godot 4+ specific ignores
+.godot/
+*.translation
+
+# Build outputs & media artifacts
+build/
+bin/
+*.avi
+*.mp4
+*.zip
+
+# Mono / C# specific
+.mono/
+data_*/
+mono_crash.*.json
+
+# Cache and temporary files
+__pycache__/
+*.py[cod]
+*$py.class
+*.tmp
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
