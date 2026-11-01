@@ -986,7 +986,7 @@ static func draw_world(
 				var title_col := Color(1.0, 0.90, 0.35) if lv >= 3 else (Color(0.45, 0.90, 1.0) if lv == 2 else Color(0.92, 0.98, 0.95))
 				canvas.draw_string(font, card_pos + Vector2(8.0, 15.0), title_str, HORIZONTAL_ALIGNMENT_LEFT, card_w - 16.0, 12, title_col)
 
-				var yield_str: String = "Net Üretim: ⚡%+d  🌱%+d  💧%+d  ☣️%+d" % [yld["e"], yld["f"], yld["w"], yld["c"]]
+				var yield_str: String = "Net Üretim: ⚡%+d  🌱%+d  💧%+d  ☣%+d" % [yld["e"], yld["f"], yld["w"], yld["c"]]
 				var syn_c: int = sim.get_synergy_links(hovered_tile, b_on_tile).size()
 				if syn_c > 0:
 					yield_str += "  | ✨ %d Sinerji" % syn_c
@@ -1526,7 +1526,7 @@ static func _draw_carbon_lens_overlay(canvas: CanvasItem, sim: GridSimulation, a
 				var lake_badge := Rect2(lake_iso.x - 32.0, lake_iso.y - 22.0, 64.0, 18.0)
 				canvas.draw_rect(lake_badge, Color(0.04, 0.14, 0.22, 0.95), true)
 				canvas.draw_rect(lake_badge, Color(0.35, 0.80, 1.0, 0.85), false, 1.2)
-				canvas.draw_string(font, lake_badge.position + Vector2(0.0, 13.0), "💧 -4°C ❄️", HORIZONTAL_ALIGNMENT_CENTER, 64.0, 11, Color(0.65, 0.92, 1.0))
+				canvas.draw_string(font, lake_badge.position + Vector2(0.0, 13.0), "💧 -4°C ❄", HORIZONTAL_ALIGNMENT_CENTER, 64.0, 11, Color(0.65, 0.92, 1.0))
 				continue
 
 			var blvl: int = sim.grid_level[x][y]
@@ -1571,13 +1571,13 @@ static func _draw_carbon_lens_overlay(canvas: CanvasItem, sim: GridSimulation, a
 			# Çatı üstü karbon rozeti
 			var b_text: String
 			if is_forest:
-				b_text = "%+d ☣️ ❄️" % c_val
+				b_text = "%+d ☣ ❄" % c_val
 			elif is_polluter:
-				b_text = "%+d ☣️ 🔥" % c_val
+				b_text = "%+d ☣ 🔥" % c_val
 			elif c_val != 0:
-				b_text = "%+d ☣️" % c_val
+				b_text = "%+d ☣" % c_val
 			else:
-				b_text = "0 ☣️"
+				b_text = "0 ☣"
 
 			var badge_w: float = 62.0 if (is_forest or is_polluter) else 56.0
 			var badge_h: float = 20.0

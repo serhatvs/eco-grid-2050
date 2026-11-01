@@ -157,7 +157,7 @@ func setup_ui(save_mgr: SaveManager) -> void:
 	top_hbox.add_child(carbon_box)
 
 	carbon_label = _create_stat_label(carbon_box, Color(1.0, 0.52, 0.45))
-	carbon_label.tooltip_text = "☣️ KARBON EMİSYONU (0 - 100):\nKömür ve fosil santralleri atmosferi kirletir.\n100'e ulaşırsa küresel ısınma kaynaklı iklim felaketi tetiklenir!\nKent ormanları ve Karbon Yakalama (CCS) ile düşürün."
+	carbon_label.tooltip_text = "☣ KARBON EMİSYONU (0 - 100):\nKömür ve fosil santralleri atmosferi kirletir.\n100'e ulaşırsa küresel ısınma kaynaklı iklim felaketi tetiklenir!\nKent ormanları ve Karbon Yakalama (CCS) ile düşürün."
 	carbon_bar = ProgressBar.new()
 	carbon_bar.custom_minimum_size = Vector2(56, 16)
 	carbon_bar.max_value = GameData.MAX_CARBON
@@ -182,7 +182,7 @@ func setup_ui(save_mgr: SaveManager) -> void:
 	top_hbox.add_child(top_spacer)
 
 	lens_button = Button.new()
-	lens_button.text = "👁️ Lens [V]"
+	lens_button.text = "👁 Lens [V]"
 	lens_button.tooltip_text = "Karbon Emisyon & Yutak Isı Haritası Lensi (Kısayol: V)"
 	lens_button.custom_minimum_size = Vector2(64, 28)
 	lens_button.add_theme_font_size_override("font_size", 11)
@@ -191,7 +191,7 @@ func setup_ui(save_mgr: SaveManager) -> void:
 	update_lens_button_style(false)
 
 	discard_mode_button = Button.new()
-	discard_mode_button.text = "🗑️ At [X]"
+	discard_mode_button.text = "🗑 At [X]"
 	discard_mode_button.tooltip_text = "Kart atma modunu aç/kapat (Kısayol: X, atılan her kart +1⚡ Enerji kazandırır)"
 	discard_mode_button.custom_minimum_size = Vector2(62, 28)
 	discard_mode_button.add_theme_font_size_override("font_size", 11)
@@ -200,7 +200,7 @@ func setup_ui(save_mgr: SaveManager) -> void:
 	update_discard_button_style(false)
 
 	undo_button = Button.new()
-	undo_button.text = "↩️ Geri [Z]"
+	undo_button.text = "↩ Geri [Z]"
 	undo_button.tooltip_text = "Son oynanan kartı geri al (Kısayol: Z, Gün başına 1 hak)"
 	undo_button.custom_minimum_size = Vector2(64, 28)
 	undo_button.add_theme_font_size_override("font_size", 11)
@@ -243,7 +243,7 @@ func setup_ui(save_mgr: SaveManager) -> void:
 	top_hbox.add_child(speed_btn)
 
 	var settings_top_btn := Button.new()
-	settings_top_btn.text = "⚙️"
+	settings_top_btn.text = "⚙"
 	settings_top_btn.tooltip_text = "Ayarlar & Ana Menü"
 	settings_top_btn.custom_minimum_size = Vector2(26, 28)
 	settings_top_btn.add_theme_font_size_override("font_size", 12)
@@ -373,7 +373,7 @@ func setup_ui(save_mgr: SaveManager) -> void:
 	end_turn_button.offset_right = -16
 	end_turn_button.offset_bottom = -35
 	end_turn_button.custom_minimum_size = Vector2(152, 68)
-	end_turn_button.text = "⏭️ Turu Bitir\n[Space]"
+	end_turn_button.text = "⏭ Turu Bitir\n[Space]"
 	end_turn_button.tooltip_text = "Turu tamamla ve sonraki güne geç (Kısayol: Space / Boşluk)"
 	end_turn_button.add_theme_font_size_override("font_size", 14)
 	end_turn_button.add_theme_stylebox_override("normal", GameData.make_stylebox(Color(0.16, 0.48, 0.34), Color(0.38, 0.92, 0.62), 2, 8))
@@ -397,7 +397,7 @@ func setup_ui(save_mgr: SaveManager) -> void:
 	add_child(carbon_lens_banner)
 
 	var lens_lbl := Label.new()
-	lens_lbl.text = "👁️ KARBON LENSİ: 🟢 Yeşil = Karbon Yutağı  |  🔴 Kırmızı = Kirletici Kaynak  |  🔵 Mavi = Nötr  [Kapat: V]"
+	lens_lbl.text = "👁 KARBON LENSİ: 🟢 Yeşil = Karbon Yutağı  |  🔴 Kırmızı = Kirletici Kaynak  |  🔵 Mavi = Nötr  [Kapat: V]"
 	lens_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	lens_lbl.add_theme_font_size_override("font_size", 12)
 	lens_lbl.add_theme_color_override("font_color", Color(0.92, 0.98, 0.95))
@@ -519,7 +519,7 @@ func _setup_modals(save_mgr: SaveManager) -> void:
 	var help_text := Label.new()
 	help_text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	help_text.add_theme_font_size_override("font_size", 12)
-	help_text.text = "• Kamera & İnceleme: Sağ Tık veya WASD ile kaydırın, Tekerlek ile Zoom yapın. Binaların üzerine gelerek net üretimi ve sinerjileri inceleyin.\n• Kart & Hamle: Kaynağınız yettiği sürece sınırsız kart oynayabilirsiniz. '↩️ Geri Al' ile günde 1 kez son kartı geri alabilir, '🗑️ Kart At' ile elden kart atabilirsiniz.\n• Seviye Yükseltme & Görevler: Aynı kartı veya 'Modüler Yükseltme' kitiyle binalarınızı Seviye 2'ye (★) ve Seviye 3'e (★★ Mega-Tesis) yükseltin. Sol paneldeki COP31 Görevlerini tamamlayarak anında ödül kazanın!"
+	help_text.text = "• Kamera & İnceleme: Sağ Tık veya WASD ile kaydırın, Tekerlek ile Zoom yapın. Binaların üzerine gelerek net üretimi ve sinerjileri inceleyin.\n• Kart & Hamle: Kaynağınız yettiği sürece sınırsız kart oynayabilirsiniz. '↩ Geri Al' ile günde 1 kez son kartı geri alabilir, '🗑 Kart At' ile elden kart atabilirsiniz.\n• Seviye Yükseltme & Görevler: Aynı kartı veya 'Modüler Yükseltme' kitiyle binalarınızı Seviye 2'ye (★) ve Seviye 3'e (★★ Mega-Tesis) yükseltin. Sol paneldeki COP31 Görevlerini tamamlayarak anında ödül kazanın!"
 	help_vbox.add_child(help_text)
 
 	help_codex_header = Label.new()
@@ -556,7 +556,7 @@ func _setup_modals(save_mgr: SaveManager) -> void:
 	tab_hbox.add_child(help_tab_ach_btn)
 
 	help_tab_evolve_btn = Button.new()
-	help_tab_evolve_btn.text = "🏛️ Yapı Evrimi (12/12)"
+	help_tab_evolve_btn.text = "🏛 Yapı Evrimi (12/12)"
 	help_tab_evolve_btn.custom_minimum_size = Vector2(215, 36)
 	help_tab_evolve_btn.pressed.connect(func() -> void:
 		help_active_tab = 2
@@ -724,7 +724,7 @@ func _setup_modals(save_mgr: SaveManager) -> void:
 	slot_panel.add_child(slot_vbox)
 
 	var slot_title := Label.new()
-	slot_title.text = "📁 OYUN KAYIT PROFİLİ (SAVE SLOTS)"
+	slot_title.text = "◈ OYUN KAYIT PROFİLLERİ (SAVE SLOTS)"
 	slot_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	slot_title.add_theme_font_size_override("font_size", 12)
 	slot_title.add_theme_color_override("font_color", Color(0.48, 0.88, 1.0))
@@ -794,7 +794,7 @@ func _setup_modals(save_mgr: SaveManager) -> void:
 	main_btns_vbox.add_child(menu_how_btn)
 
 	var menu_settings_btn := Button.new()
-	menu_settings_btn.text = "⚙️ AYARLAR (SETTINGS)"
+	menu_settings_btn.text = "⚙ AYARLAR (SETTINGS)"
 	menu_settings_btn.custom_minimum_size = Vector2(260, 40)
 	menu_settings_btn.add_theme_font_size_override("font_size", 14)
 	menu_settings_btn.add_theme_stylebox_override("normal", GameData.make_stylebox(Color(0.18, 0.22, 0.28), Color(0.55, 0.64, 0.75), 2, 8))
@@ -828,7 +828,7 @@ func _setup_modals(save_mgr: SaveManager) -> void:
 	mode_select_panel.add_child(mode_vbox)
 
 	var mode_title := Label.new()
-	mode_title.text = "🗺️ SENARYO / OYUN MODU SEÇİMİ"
+	mode_title.text = "🗺 SENARYO / OYUN MODU SEÇİMİ"
 	mode_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	mode_title.add_theme_font_size_override("font_size", 24)
 	mode_title.add_theme_color_override("font_color", Color(0.45, 0.96, 0.68))
@@ -938,7 +938,7 @@ func _setup_modals(save_mgr: SaveManager) -> void:
 	settings_card.add_child(set_vbox)
 
 	var set_title := Label.new()
-	set_title.text = "⚙️ OYUN AYARLARI (SETTINGS)"
+	set_title.text = "⚙ OYUN AYARLARI (SETTINGS)"
 	set_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	set_title.add_theme_font_size_override("font_size", 22)
 	set_title.add_theme_color_override("font_color", Color(0.48, 0.95, 0.68))
@@ -996,7 +996,7 @@ func _setup_modals(save_mgr: SaveManager) -> void:
 	set_vbox.add_child(shake_chk)
 
 	var fs_chk := CheckButton.new()
-	fs_chk.text = "🖥️ Tam Ekran Modu (Fullscreen)"
+	fs_chk.text = "🖥 Tam Ekran Modu (Fullscreen)"
 	fs_chk.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	fs_chk.toggled.connect(func(on: bool) -> void:
 		if on:
@@ -1047,14 +1047,14 @@ func _setup_modals(save_mgr: SaveManager) -> void:
 		settings_slot_buttons.append(s_btn)
 
 	settings_reset_save_btn = Button.new()
-	settings_reset_save_btn.text = "⚠️ Yuva %d İlerlemesini Sıfırla" % save_mgr.current_slot
+	settings_reset_save_btn.text = "⚠ Yuva %d İlerlemesini Sıfırla" % save_mgr.current_slot
 	settings_reset_save_btn.custom_minimum_size = Vector2(250, 32)
 	settings_reset_save_btn.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	settings_reset_save_btn.add_theme_font_size_override("font_size", 12)
 	settings_reset_save_btn.add_theme_stylebox_override("normal", GameData.make_stylebox(Color(0.24, 0.12, 0.12), Color(0.75, 0.35, 0.35), 1, 6))
 	settings_reset_save_btn.add_theme_stylebox_override("hover", GameData.make_stylebox(Color(0.36, 0.16, 0.16), Color(0.95, 0.45, 0.45), 2, 6))
 	settings_reset_save_btn.pressed.connect(func() -> void:
-		if settings_reset_save_btn.text.begins_with("⚠️"):
+		if settings_reset_save_btn.text.begins_with("⚠"):
 			settings_reset_save_btn.text = "❓ Yuva %d Sıfırlansın mı? (Tekrar Tıklayın)" % save_mgr.current_slot
 		else:
 			save_mgr.reset_all_data()
@@ -1150,7 +1150,7 @@ func _setup_shortcuts_panel() -> void:
 	center_box.add_child(vbox)
 
 	var title := Label.new()
-	title.text = "⌨️ KLAVYE KISAYOLLARI & KONTROLLER"
+	title.text = "⌨ KLAVYE KISAYOLLARI & KONTROLLER"
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	title.add_theme_font_size_override("font_size", 18)
 	title.add_theme_color_override("font_color", Color(0.45, 0.95, 0.75))
@@ -1288,7 +1288,7 @@ func _setup_deck_inspector_panel() -> void:
 	tab_hbox.add_child(deck_tab_btn)
 
 	discard_tab_btn = Button.new()
-	discard_tab_btn.text = "🗑️ Iskarta & Kullanılanlar"
+	discard_tab_btn.text = "🗑 Iskarta & Kullanılanlar"
 	discard_tab_btn.custom_minimum_size = Vector2(210, 32)
 	discard_tab_btn.pressed.connect(func() -> void:
 		_inspector_view_discard = true
@@ -1342,7 +1342,7 @@ func _render_deck_inspector_content(sim: GridSimulation) -> void:
 		deck_tab_btn.add_theme_stylebox_override("normal", GameData.make_stylebox(Color(0.10, 0.14, 0.18), Color(0.25, 0.35, 0.42), 1, 6))
 		discard_tab_btn.add_theme_stylebox_override("normal", GameData.make_stylebox(Color(0.42, 0.18, 0.22), Color(0.95, 0.45, 0.52), 2, 6))
 		var total_discard: int = sim.discard_pile.size()
-		deck_inspector_title.text = "🗑️ ISKARTA DESTESİ (%d KART)" % total_discard
+		deck_inspector_title.text = "🗑 ISKARTA DESTESİ (%d KART)" % total_discard
 		deck_inspector_title.add_theme_color_override("font_color", Color(1.0, 0.55, 0.60))
 		deck_sub_title.text = "Oyun boyunca elden atılan [D] ve sahada inşa edilen kartların dökümü:"
 
@@ -1351,7 +1351,7 @@ func _render_deck_inspector_content(sim: GridSimulation) -> void:
 			empty_panel.custom_minimum_size = Vector2(600, 100)
 			empty_panel.add_theme_stylebox_override("panel", GameData.make_stylebox(Color(0.10, 0.14, 0.18, 0.90), Color(0.35, 0.45, 0.52), 1, 8))
 			var empty_lbl := Label.new()
-			empty_lbl.text = "🗑️ Iskarta destesi henüz boş.\nOynadığınız veya elden attığınız kartlar burada listelenir."
+			empty_lbl.text = "🗑 Iskarta destesi henüz boş.\nOynadığınız veya elden attığınız kartlar burada listelenir."
 			empty_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			empty_lbl.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 			empty_lbl.add_theme_font_size_override("font_size", 13)
@@ -1643,9 +1643,9 @@ func open_stats_breakdown(sim: GridSimulation) -> void:
 			"border": Color(0.25, 0.55, 0.75)
 		},
 		{
-			"title": "☣️ KARBON BİLANÇOSU & NET-SIFIR",
+			"title": "☣ KARBON BİLANÇOSU & NET-SIFIR",
 			"net": net_c,
-			"desc": "Brüt Salım: +%d ☣️   |   Yutulan (Orman & CCS): -%d ☣️   |   Net Günlük: %+d ☣️" % [flow["c_emit"], flow["c_sink"], net_c],
+			"desc": "Brüt Salım: +%d ☣   |   Yutulan (Orman & CCS): -%d ☣   |   Net Günlük: %+d ☣" % [flow["c_emit"], flow["c_sink"], net_c],
 			"col": Color(0.42, 1.0, 0.68) if net_c <= 0 else Color(1.0, 0.42, 0.35),
 			"bg": Color(0.08, 0.18, 0.14, 0.92) if net_c <= 0 else Color(0.22, 0.10, 0.08, 0.92),
 			"border": Color(0.35, 0.85, 0.55) if net_c <= 0 else Color(0.85, 0.35, 0.28),
@@ -1694,7 +1694,7 @@ func open_stats_breakdown(sim: GridSimulation) -> void:
 	summary_card.add_child(svbox)
 
 	var stitle := Label.new()
-	stitle.text = "🏛️ ŞEHİR DEMOGRAFİSİ & SÜRDÜRÜLEBİLİRLİK"
+	stitle.text = "🏛 ŞEHİR DEMOGRAFİSİ & SÜRDÜRÜLEBİLİRLİK"
 	stitle.add_theme_font_size_override("font_size", 13)
 	stitle.add_theme_color_override("font_color", Color(0.55, 0.92, 0.98))
 	svbox.add_child(stitle)
@@ -1747,7 +1747,7 @@ func open_stats_breakdown(sim: GridSimulation) -> void:
 			day_badge.add_theme_stylebox_override("panel", sbox)
 
 			var d_lbl := Label.new()
-			d_lbl.text = "G%d: %d☣️" % [d_idx + 1, c_val]
+			d_lbl.text = "G%d: %d☣" % [d_idx + 1, c_val]
 			d_lbl.add_theme_font_size_override("font_size", 12)
 			d_lbl.add_theme_color_override("font_color", Color(0.95, 0.98, 0.96))
 			day_badge.add_child(d_lbl)
@@ -1813,11 +1813,11 @@ func update_slot_buttons_ui(save_mgr: SaveManager) -> void:
 			btn.add_theme_color_override("font_color", Color(0.70, 0.82, 0.88))
 
 	if settings_reset_save_btn != null:
-		settings_reset_save_btn.text = "⚠️ Yuva %d İlerlemesini Sıfırla" % save_mgr.current_slot
+		settings_reset_save_btn.text = "⚠ Yuva %d İlerlemesini Sıfırla" % save_mgr.current_slot
 
 func update_start_screen_stats(save_mgr: SaveManager) -> void:
 	if start_stats_label != null:
-		start_stats_label.text = "💾 [YUVA %d]   🏆 En Yüksek Eko-Skor: %d   |   🏅 Başarımlar: %d / %d   |   🃏 Açılan Kartlar: %d / %d" % [
+		start_stats_label.text = "[ YUVA %d ]   ★ En Yüksek Eko-Skor: %d   |   ◈ Başarımlar: %d / %d   |   🃏 Açılan Kartlar: %d / %d" % [
 			save_mgr.current_slot,
 			save_mgr.high_score,
 			save_mgr.unlocked_achievements.size(),
@@ -1840,22 +1840,22 @@ func update_start_screen_stats(save_mgr: SaveManager) -> void:
 func update_mode_select_buttons(save_mgr: SaveManager) -> void:
 	if scen1_btn_node != null:
 		var crown1: String = " 👑 [KAZANILDI]" if save_mgr.completed_scenarios.has(0) else ""
-		scen1_btn_node.text = "🌱 Standart Ekoloji%s\n\n⚡10  🌱10  💧10  |  ☣️20\n• Dengeli iklim geçişi (Önerilen)" % crown1
+		scen1_btn_node.text = "🌱 Standart Ekoloji%s\n\n⚡ 10   🌱 10   💧 10   |   ☣ 20\n• Dengeli iklim geçişi (Önerilen)" % crown1
 	if scen2_btn_node != null:
 		var crown2: String = " 👑 [KAZANILDI]" if save_mgr.completed_scenarios.has(1) else ""
-		scen2_btn_node.text = "🏭 Sanayi Mirası (Zor)%s\n\n⚡12  🌱10  💧10  |  ☣️42\n• Kömür kirliliğini temizle" % crown2
+		scen2_btn_node.text = "🏭 Sanayi Mirası (Zor)%s\n\n⚡ 12   🌱 10   💧 10   |   ☣ 42\n• Kömür kirliliğini temizle" % crown2
 	if scen3_btn_node != null:
 		var crown3: String = " 👑 [KAZANILDI]" if save_mgr.completed_scenarios.has(2) else ""
-		scen3_btn_node.text = "🏜️ Kuraklık Vahası%s\n\n⚡16  🌱10  💧5 (Kritik!)  |  ☣️16\n• Çölleşmeye karşı su direnci" % crown3
+		scen3_btn_node.text = "🏜 Kuraklık Vahası%s\n\n⚡ 16   🌱 10   💧 5 (Kritik!)   |   ☣ 16\n• Çölleşmeye karşı su direnci" % crown3
 	if scen4_btn_node != null:
 		var crown4: String = " 👑 [KAZANILDI]" if save_mgr.completed_scenarios.has(3) else ""
-		scen4_btn_node.text = "♾️ Sonsuz Sandbox%s\n\n⚡14  🌱14  💧14  |  ☣️25\n• Süresiz serbest inşaat & test" % crown4
+		scen4_btn_node.text = "♾ Sonsuz Sandbox%s\n\n⚡ 14   🌱 14   💧 14   |   ☣ 25\n• Süresiz serbest inşaat & test" % crown4
 
 func update_undo_button(sim: GridSimulation) -> void:
 	if undo_button == null:
 		return
 	undo_button.disabled = not (sim.undo_available and sim.undo_remaining_today > 0)
-	undo_button.text = "↩️ Geri (%d) [Z]" % sim.undo_remaining_today
+	undo_button.text = "↩ Geri (%d) [Z]" % sim.undo_remaining_today
 
 func set_game_hud_visible(vis: bool) -> void:
 	if top_bar_panel != null:
@@ -1934,7 +1934,7 @@ func show_day_recap(day_num: int, turn_prod: Dictionary, zero_streak: int, news:
 	if day_recap_panel == null or day_recap_label == null:
 		return
 	var streak_note: String = (" | 🌟 0-Karbon: %d/5" % zero_streak) if zero_streak > 0 else ""
-	var recap_text := "🌅 GÜN %d BAŞLADI — Net Üretim: ⚡%+d  🌱%+d  💧%+d  ☣️%+d%s" % [
+	var recap_text := "🌅 GÜN %d BAŞLADI — Net Üretim: ⚡%+d  🌱%+d  💧%+d  ☣%+d%s" % [
 		day_num, turn_prod["e"], turn_prod["f"], turn_prod["w"], turn_prod["c"], streak_note
 	]
 	if not news.is_empty():
@@ -1963,11 +1963,11 @@ func update_discard_button_style(discard_mode: bool) -> void:
 	if discard_mode_button == null:
 		return
 	if discard_mode:
-		discard_mode_button.text = "🗑️ Açık [X]"
+		discard_mode_button.text = "🗑 Açık [X]"
 		discard_mode_button.add_theme_stylebox_override("normal", GameData.make_stylebox(Color(0.62, 0.18, 0.18), Color(1.0, 0.52, 0.48), 2, 6))
 		discard_mode_button.add_theme_stylebox_override("hover", GameData.make_stylebox(Color(0.72, 0.24, 0.24), Color(1.0, 0.68, 0.62), 2, 6))
 	else:
-		discard_mode_button.text = "🗑️ At [X]"
+		discard_mode_button.text = "🗑 At [X]"
 		discard_mode_button.add_theme_stylebox_override("normal", GameData.make_stylebox(Color(0.28, 0.15, 0.18), Color(0.72, 0.36, 0.38), 2, 6))
 		discard_mode_button.add_theme_stylebox_override("hover", GameData.make_stylebox(Color(0.38, 0.20, 0.24), Color(0.92, 0.48, 0.48), 2, 6))
 
@@ -1975,11 +1975,11 @@ func update_lens_button_style(active: bool) -> void:
 	if lens_button == null:
 		return
 	if active:
-		lens_button.text = "👁️ AÇIK [V]"
+		lens_button.text = "👁 AÇIK [V]"
 		lens_button.add_theme_stylebox_override("normal", GameData.make_stylebox(Color(0.12, 0.44, 0.32), Color(0.45, 1.0, 0.72), 2, 6))
 		lens_button.add_theme_stylebox_override("hover", GameData.make_stylebox(Color(0.18, 0.54, 0.38), Color(0.65, 1.0, 0.85), 2, 6))
 	else:
-		lens_button.text = "👁️ Lens [V]"
+		lens_button.text = "👁 Lens [V]"
 		lens_button.add_theme_stylebox_override("normal", GameData.make_stylebox(Color(0.16, 0.22, 0.28), Color(0.38, 0.55, 0.68), 2, 6))
 		lens_button.add_theme_stylebox_override("hover", GameData.make_stylebox(Color(0.22, 0.30, 0.38), Color(0.55, 0.75, 0.90), 2, 6))
 
@@ -2137,10 +2137,10 @@ func rebuild_help_cards_ui(save_mgr: SaveManager) -> void:
 			help_cards_grid.add_child(ach_panel)
 
 	else:
-		help_codex_header.text = "🏛️ SÜRDÜRÜLEBİLİR YAPI EVRİMİ (12/12) — Lv.1 Temel ➔ Lv.2 Gelişmiş (★) ➔ Lv.3 Mega-Tesis (★★)"
+		help_codex_header.text = "🏛 SÜRDÜRÜLEBİLİR YAPI EVRİMİ (12/12) — Lv.1 Temel ➔ Lv.2 Gelişmiş (★) ➔ Lv.3 Mega-Tesis (★★)"
 		var evolution_catalog: Array[Dictionary] = [
 			{
-				"title": "Güneş Enerji Kompleksi", "icon": "☀️", "cat": "⚡ Temiz Enerji", "col": Color(0.95, 0.76, 0.15),
+				"title": "Güneş Enerji Kompleksi", "icon": "☀", "cat": "⚡ Temiz Enerji", "col": Color(0.95, 0.76, 0.15),
 				"lv1": "Lv.1 Güneş Paneli: ⚡+3  💧-1 (Konut komşusu: ⚡+1)",
 				"lv2": "Lv.2 Gelişmiş Güneş Çiftliği ★: ⚡+5  💧-1 (Güneşli havada: ⚡+1)",
 				"lv3": "Lv.3 Mega Güneş Kompleksi ★★: ⚡+8  💧0 (Sıfır su kaybı fotovoltaik; Konut: ⚡+2)"
@@ -2165,15 +2165,15 @@ func rebuild_help_cards_ui(save_mgr: SaveManager) -> void:
 			},
 			{
 				"title": "Kent Ormanı & Biyosfer", "icon": "🌲", "cat": "🌲 Doğal Ekosistem", "col": Color(0.16, 0.62, 0.34),
-				"lv1": "Lv.1 Kent Ormanı: ☣️-3  🌱+1 (Göl komşusu: ☣️-1 ek karbon yutağı)",
-				"lv2": "Lv.2 Gelişmiş Kent Ormanı ★: ☣️-5  🌱+2 (Çok katmanlı serinletici mikro-ekosistem)",
-				"lv3": "Lv.3 Mega Kadim Biyosfer Ormanı ★★: ☣️-8  🌱+3  💧+1 (Kadim flora & mikorizal ağ)"
+				"lv1": "Lv.1 Kent Ormanı: ☣-3  🌱+1 (Göl komşusu: ☣-1 ek karbon yutağı)",
+				"lv2": "Lv.2 Gelişmiş Kent Ormanı ★: ☣-5  🌱+2 (Çok katmanlı serinletici mikro-ekosistem)",
+				"lv3": "Lv.3 Mega Kadim Biyosfer Ormanı ★★: ☣-8  🌱+3  💧+1 (Kadim flora & mikorizal ağ)"
 			},
 			{
 				"title": "Karbon Yakalama (CCS)", "icon": "🧪", "cat": "🧪 İklim Mühendisliği", "col": Color(0.45, 0.88, 0.92),
-				"lv1": "Lv.1 Karbon Yakalama: ☣️-4  ⚡-2 (Kirli sanayi komşusu: ☣️-2)",
-				"lv2": "Lv.2 Gelişmiş Karbon Yakalama ★: ☣️-7  ⚡-2 (Çift türbin doğrudan hava yakalama DAC)",
-				"lv3": "Lv.3 Mega Karbon Yakalama Kulesi ★★: ☣️-12  ⚡-3 (Jeolojik mineralizasyon ile CO2 taşı)"
+				"lv1": "Lv.1 Karbon Yakalama: ☣-4  ⚡-2 (Kirli sanayi komşusu: ☣-2)",
+				"lv2": "Lv.2 Gelişmiş Karbon Yakalama ★: ☣-7  ⚡-2 (Çift türbin doğrudan hava yakalama DAC)",
+				"lv3": "Lv.3 Mega Karbon Yakalama Kulesi ★★: ☣-12  ⚡-3 (Jeolojik mineralizasyon ile CO2 taşı)"
 			},
 			{
 				"title": "Su Arıtma Tesisi", "icon": "🚰", "cat": "🚰 Su Güvenliği", "col": Color(0.20, 0.48, 0.88),
@@ -2188,16 +2188,16 @@ func rebuild_help_cards_ui(save_mgr: SaveManager) -> void:
 				"lv3": "Lv.3 Mega Derin Jeotermal Tesis ★★: ⚡+10  💧-1 (Magma katmanı termal dönüştürücü)"
 			},
 			{
-				"title": "Geri Dönüşüm Tesisi", "icon": "♻️", "cat": "♻️ Döngüsel Ekonomi", "col": Color(0.22, 0.74, 0.64),
+				"title": "Geri Dönüşüm Tesisi", "icon": "♻", "cat": "♻ Döngüsel Ekonomi", "col": Color(0.22, 0.74, 0.64),
 				"lv1": "Lv.1 Geri Dönüşüm: 💧+1  ⚡+1 (Konut komşularından atık geri kazanımı)",
 				"lv2": "Lv.2 Gelişmiş Geri Dönüşüm ★: 💧+2  ⚡+2 (Ayrıştırma serası & biyo-kompost)",
-				"lv3": "Lv.3 Mega Sıfır Atık Kompleksi ★★: 💧+3  ⚡+3  ☣️-2 (Tam döngüsel atıksız ekosistem)"
+				"lv3": "Lv.3 Mega Sıfır Atık Kompleksi ★★: 💧+3  ⚡+3  ☣-2 (Tam döngüsel atıksız ekosistem)"
 			},
 			{
 				"title": "Ekolojik Biyo-Koridor", "icon": "🦋", "cat": "🦋 Ekosistem Köprüsü", "col": Color(0.38, 0.92, 0.55),
-				"lv1": "Lv.1 Biyo-Koridor: 🌱+2  ☣️-1 (Ormanlar arasında polen & yaban göç hattı)",
-				"lv2": "Lv.2 Gelişmiş Biyo-Koridor ★: 🌱+4  ☣️-2 (Eko-otoyol viyadüğü ve çiçekli polen şeridi)",
-				"lv3": "Lv.3 Mega Ekosistem Otoyolu ★★: 🌱+6  ☣️-3 (Bölgesel flora-fauna göç arteri)"
+				"lv1": "Lv.1 Biyo-Koridor: 🌱+2  ☣-1 (Ormanlar arasında polen & yaban göç hattı)",
+				"lv2": "Lv.2 Gelişmiş Biyo-Koridor ★: 🌱+4  ☣-2 (Eko-otoyol viyadüğü ve çiçekli polen şeridi)",
+				"lv3": "Lv.3 Mega Ekosistem Otoyolu ★★: 🌱+6  ☣-3 (Bölgesel flora-fauna göç arteri)"
 			},
 			{
 				"title": "Şebeke Bataryası", "icon": "🔋", "cat": "🔋 Şebeke Güvenliği", "col": Color(0.24, 0.88, 0.72),
@@ -2206,10 +2206,10 @@ func rebuild_help_cards_ui(save_mgr: SaveManager) -> void:
 				"lv3": "Lv.3 Mega Kuantum Enerji Deposu ★★: ⚡+7 (Katı-hal elektrolit ile sıfır kayıplı mega rezerv)"
 			},
 			{
-				"title": "COP31 Diplomasi Merkezi", "icon": "🏛️", "cat": "🏛️ Küresel Zirve", "col": Color(0.35, 0.72, 1.0),
-				"lv1": "Lv.1 Yerel İklim Merkezi: ⚡+2  💧+2  🌱+2  ☣️-3 (Bölgesel iklim direnç izleme)",
-				"lv2": "Lv.2 COP31 Diplomasi Merkezi ★: ⚡+4  💧+4  🌱+4  ☣️-6 (Uluslararası mutabakat & yeşil fon)",
-				"lv3": "Lv.3 Mega COP31 Zirvesi Kompleksi ★★: ⚡+6  💧+6  🌱+6  ☣️-10 (Küresel Net-Sıfır İklim Zirvesi)"
+				"title": "COP31 Diplomasi Merkezi", "icon": "🏛", "cat": "🏛 Küresel Zirve", "col": Color(0.35, 0.72, 1.0),
+				"lv1": "Lv.1 Yerel İklim Merkezi: ⚡+2  💧+2  🌱+2  ☣-3 (Bölgesel iklim direnç izleme)",
+				"lv2": "Lv.2 COP31 Diplomasi Merkezi ★: ⚡+4  💧+4  🌱+4  ☣-6 (Uluslararası mutabakat & yeşil fon)",
+				"lv3": "Lv.3 Mega COP31 Zirvesi Kompleksi ★★: ⚡+6  💧+6  🌱+6  ☣-10 (Küresel Net-Sıfır İklim Zirvesi)"
 			}
 		]
 		for bldg in evolution_catalog:
@@ -2289,7 +2289,7 @@ func rebuild_perks_ui(sim: GridSimulation) -> void:
 	perks_vbox.add_child(q1)
 
 	var q2 := Label.new()
-	q2.text = ("%s 3 Orman Kur (%d/3) (☣️-8)" % ["✅" if sim.quests_completed["forest"] else "⬜", mini(3, sim.stats_forests_planted)])
+	q2.text = ("%s 3 Orman Kur (%d/3) (☣-8)" % ["✅" if sim.quests_completed["forest"] else "⬜", mini(3, sim.stats_forests_planted)])
 	q2.add_theme_font_size_override("font_size", 12)
 	q2.add_theme_color_override("font_color", Color(0.55, 0.95, 0.68) if sim.quests_completed["forest"] else Color(0.82, 0.86, 0.84))
 	perks_vbox.add_child(q2)
@@ -2311,7 +2311,7 @@ func rebuild_perks_ui(sim: GridSimulation) -> void:
 	perks_vbox.add_child(header_hbox)
 
 	var header := Label.new()
-	header.text = "⚖️ Yasalar (%d)" % sim.active_perks.size()
+	header.text = "⚖ Yasalar (%d)" % sim.active_perks.size()
 	header.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	header.add_theme_font_size_override("font_size", 12)
 	header.add_theme_color_override("font_color", Color(0.55, 0.92, 0.72))
@@ -2332,7 +2332,7 @@ func rebuild_perks_ui(sim: GridSimulation) -> void:
 	tools_hbox.add_child(deck_inspect_btn)
 
 	var discard_inspect_btn := Button.new()
-	discard_inspect_btn.text = "🗑️ %d" % sim.discard_pile.size()
+	discard_inspect_btn.text = "🗑 %d" % sim.discard_pile.size()
 	discard_inspect_btn.tooltip_text = "Iskarta destesini ve kullanılan kartları inceleyin"
 	discard_inspect_btn.custom_minimum_size = Vector2(0, 26)
 	discard_inspect_btn.add_theme_font_size_override("font_size", 12)
@@ -2511,7 +2511,7 @@ func rebuild_hand_ui(hand: Array, selected_hand_index: int, discard_mode: bool, 
 		var art_frame := PanelContainer.new()
 		art_frame.mouse_filter = Control.MOUSE_FILTER_PASS
 		art_frame.custom_minimum_size = Vector2(0, 50)
-		var art_sb := GameData.make_stylebox(Color(0.04, 0.07, 0.10, 0.88), border_col.darkened(0.4), 1, 5)
+		var art_sb := GameData.make_stylebox(Color(0.07, 0.12, 0.16, 0.94), border_col.darkened(0.25), 1, 5)
 		art_sb.content_margin_left = 2
 		art_sb.content_margin_right = 2
 		art_sb.content_margin_top = 2
@@ -2585,9 +2585,9 @@ func rebuild_hand_ui(hand: Array, selected_hand_index: int, discard_mode: bool, 
 		# 5. Action Button
 		var pick_btn := Button.new()
 		if discard_mode:
-			pick_btn.text = "🗑️ Kartı At (+1⚡)"
+			pick_btn.text = "🗑 Kartı At (+1⚡)"
 		elif not is_affordable:
-			pick_btn.text = unaffordable_reason if not unaffordable_reason.is_empty() else "⚠️ Yetersiz Kaynak"
+			pick_btn.text = unaffordable_reason if not unaffordable_reason.is_empty() else "⚠ Yetersiz Kaynak"
 		elif is_selected:
 			pick_btn.text = "✓ Seçili [Kare Seç]"
 		else:
@@ -2715,12 +2715,12 @@ func update_hud_stats(sim: GridSimulation, preview_delta: Dictionary = {}) -> vo
 		water_label.tooltip_text = "💧 SU REZERVLERİ:\nMevcut Rezerv: %d 💧  |  Net Günlük Akış: %+d 💧\n(0 veya altına düşerse kuraklık başlar!)" % [sim.water, prod["w"]]
 
 		if sim.carbon >= 70:
-			carbon_label.text = "🚨 ☣️ %d/%d (%+d) [KRİTİK!]" % [sim.carbon, GameData.MAX_CARBON, prod["c"]]
+			carbon_label.text = "🚨 ☣ %d/%d (%+d) [KRİTİK!]" % [sim.carbon, GameData.MAX_CARBON, prod["c"]]
 			carbon_label.add_theme_color_override("font_color", Color(1.0, 0.28, 0.24))
 		else:
-			carbon_label.text = "☣️ %d/%d (%+d)" % [sim.carbon, GameData.MAX_CARBON, prod["c"]]
+			carbon_label.text = "☣ %d/%d (%+d)" % [sim.carbon, GameData.MAX_CARBON, prod["c"]]
 			carbon_label.add_theme_color_override("font_color", Color(1.0, 0.52, 0.45))
-		carbon_label.tooltip_text = "☣️ KARBON BİLANÇOSU:\nMevcut Atmosferik Karbon: %d/%d  |  Net Günlük: %+d ☣️\n(100'e ulaşırsa küresel ısınma felaketi tetiklenir!)" % [sim.carbon, GameData.MAX_CARBON, prod["c"]]
+		carbon_label.tooltip_text = "☣ KARBON BİLANÇOSU:\nMevcut Atmosferik Karbon: %d/%d  |  Net Günlük: %+d ☣\n(100'e ulaşırsa küresel ısınma felaketi tetiklenir!)" % [sim.carbon, GameData.MAX_CARBON, prod["c"]]
 		carbon_bar.value = sim.carbon
 	else:
 		var ne: int = sim.energy + preview_delta.get("e", 0)
@@ -2742,7 +2742,7 @@ func update_hud_stats(sim: GridSimulation, preview_delta: Dictionary = {}) -> vo
 		water_label.text = "💧 %d➔%d (%+d)" % [sim.water, nw, prod["w"] + dw]
 		water_label.add_theme_color_override("font_color", Color(0.60, 0.90, 1.0) if dw >= 0 else Color(1.0, 0.42, 0.35))
 
-		carbon_label.text = "☣️ %d➔%d (%+d)" % [sim.carbon, nc, prod["c"] + dc]
+		carbon_label.text = "☣ %d➔%d (%+d)" % [sim.carbon, nc, prod["c"] + dc]
 		carbon_label.add_theme_color_override("font_color", Color(0.45, 1.0, 0.65) if dc <= 0 else Color(1.0, 0.42, 0.35))
 		carbon_bar.value = nc
 
@@ -2764,7 +2764,7 @@ func update_hud_stats(sim: GridSimulation, preview_delta: Dictionary = {}) -> vo
 		var w_type: int = sim.current_weather
 		var w_info: Dictionary = GameData.WEATHER_INFO.get(w_type, GameData.WEATHER_INFO[GameData.WeatherType.MODERATE])
 		weather_label.text = "%s %s" % [w_info["icon"], w_info["title"]]
-		weather_label.tooltip_text = "🌤️ EKOLOJİK HAVA DURUMU: %s\n\n🎯 Etki: %s\n📚 %s" % [w_info["title"], w_info["bonus_desc"], w_info["desc"]]
+		weather_label.tooltip_text = "🌤 EKOLOJİK HAVA DURUMU: %s\n\n🎯 Etki: %s\n📚 %s" % [w_info["title"], w_info["bonus_desc"], w_info["desc"]]
 		weather_label.add_theme_color_override("font_color", w_info["color"])
 	var next_crisis_day: int = ((int(sim.day / 5) + 1) * 5)
 	var playable_cards: int = 0
@@ -2780,7 +2780,7 @@ func update_hud_stats(sim: GridSimulation, preview_delta: Dictionary = {}) -> vo
 			if left_perks_panel_node != null:
 				left_perks_panel_node.add_theme_stylebox_override("panel", GameData.make_stylebox(Color(0.12, 0.08, 0.08, 0.92), Color(0.85, 0.38, 0.28), 2, 8))
 			if end_turn_button != null:
-				end_turn_button.text = "⚠️ Turu Bitir (Kriz!)\n[Space]"
+				end_turn_button.text = "⚠ Turu Bitir (Kriz!)\n[Space]"
 				end_turn_button.add_theme_stylebox_override("normal", GameData.make_stylebox(Color(0.52, 0.22, 0.16), Color(1.0, 0.48, 0.35), 2, 8))
 				end_turn_button.add_theme_stylebox_override("hover", GameData.make_stylebox(Color(0.65, 0.28, 0.20), Color(1.0, 0.62, 0.48), 2, 8))
 		else:
@@ -2789,14 +2789,14 @@ func update_hud_stats(sim: GridSimulation, preview_delta: Dictionary = {}) -> vo
 			if left_perks_panel_node != null:
 				left_perks_panel_node.add_theme_stylebox_override("panel", GameData.make_stylebox(Color(0.07, 0.11, 0.15, 0.90), Color(0.24, 0.46, 0.38), 1, 8))
 			if end_turn_button != null:
-				end_turn_button.text = ("⏭️ Turu Bitir (%d Hazır)\n[Space]" % playable_cards) if playable_cards > 0 else "⏭️ Turu Bitir\n[Space]"
+				end_turn_button.text = ("⏭ Turu Bitir (%d Hazır)\n[Space]" % playable_cards) if playable_cards > 0 else "⏭ Turu Bitir\n[Space]"
 				end_turn_button.add_theme_stylebox_override("normal", GameData.make_stylebox(Color(0.16, 0.48, 0.34), Color(0.38, 0.92, 0.62), 2, 8))
 				end_turn_button.add_theme_stylebox_override("hover", GameData.make_stylebox(Color(0.22, 0.60, 0.42), Color(0.55, 1.0, 0.78), 2, 8))
 	else:
 		forecast_label.text = "📡 Son Düzlük!"
 		forecast_label.add_theme_color_override("font_color", Color(0.55, 0.95, 0.75))
 		if end_turn_button != null:
-			end_turn_button.text = ("⏭️ Turu Bitir (%d Hazır)\n[Space]" % playable_cards) if playable_cards > 0 else "⏭️ Turu Bitir\n[Space]"
+			end_turn_button.text = ("⏭ Turu Bitir (%d Hazır)\n[Space]" % playable_cards) if playable_cards > 0 else "⏭ Turu Bitir\n[Space]"
 			end_turn_button.add_theme_stylebox_override("normal", GameData.make_stylebox(Color(0.16, 0.48, 0.34), Color(0.38, 0.92, 0.62), 2, 8))
 	update_undo_button(sim)
 	update_onboarding_guide(sim, hovered_hand_index if hovered_hand_index >= 0 else -1)
@@ -2823,7 +2823,7 @@ func update_onboarding_guide(sim: GridSimulation, selected_index: int = -1) -> v
 	elif sim.day == 2:
 		onboarding_label.text = "💡 İPUCU: Aynı binanın üzerine oynayarak Seviye 2 (★) yapabilirsiniz!"
 	elif sim.day == 3:
-		onboarding_label.text = "⚠️ DİKKAT: 5. günde İklim Krizi var! Kömürleri yıkın veya Orman dikin."
+		onboarding_label.text = "⚠ DİKKAT: 5. günde İklim Krizi var! Kömürleri yıkın veya Orman dikin."
 
 func update_fact_tip(day_num: int) -> void:
 	if fact_label == null:
@@ -2849,7 +2849,7 @@ func open_perk_selection_modal(sim: GridSimulation) -> bool:
 	available.shuffle()
 	var count: int = mini(3, available.size())
 	modal_panel.visible = true
-	modal_title_label.text = "⚖️ SÜRDÜRÜLEBİLİRLİK YASASI SEÇİN (Gün %d)" % sim.day
+	modal_title_label.text = "⚖ SÜRDÜRÜLEBİLİRLİK YASASI SEÇİN (Gün %d)" % sim.day
 	modal_subtitle_label.text = "Şehriniz için kalıcı bir ekolojik reform yasası yürürlüğe koyun:"
 
 	for child in modal_options_box.get_children():
@@ -2946,7 +2946,7 @@ func _format_impact_text(delta: Dictionary) -> String:
 	if delta.get("w", 0) != 0:
 		parts.append("💧%+d" % delta["w"])
 	if delta.get("c", 0) != 0:
-		parts.append("☣️%+d" % delta["c"])
+		parts.append("☣%+d" % delta["c"])
 	if parts.is_empty():
 		return "Nötr"
 	return "  ".join(parts)
@@ -3037,7 +3037,7 @@ func show_end_screen(won: bool, title: String, subtitle: String, sim: GridSimula
 				{"txt": "🏭 Kömür: +%d" % (sim.stats_coal_demolished * 25), "col": Color(1.0, 0.65, 0.35)},
 				{"txt": "⚡ Temiz En: +%d" % (sim.stats_clean_energy_built * 10), "col": Color(0.40, 0.88, 1.0)},
 				{"txt": "⭐ Tesis Yükseltmeleri: +%d" % (sim.stats_upgrades_done * 15), "col": Color(1.0, 0.88, 0.35)},
-				{"txt": "☣️ Karbon: -%d" % sim.carbon, "col": Color(1.0, 0.45, 0.45) if sim.carbon > 0 else Color(0.45, 0.95, 0.65)}
+				{"txt": "☣ Karbon: -%d" % sim.carbon, "col": Color(1.0, 0.45, 0.45) if sim.carbon > 0 else Color(0.45, 0.95, 0.65)}
 			]
 			var bio_score_dict: Dictionary = sim.calculate_biodiversity()
 			var bio_pts: int = int(bio_score_dict["score"] * 0.25)
@@ -3095,7 +3095,7 @@ func build_timeline_chart(sim: GridSimulation, chart_w: float = 640.0, chart_h: 
 	header_hbox.add_child(spacer)
 
 	var legend_items := [
-		{"label": "☣️ Karbon (%d)" % sim.carbon, "color": Color(1.0, 0.38, 0.32)},
+		{"label": "☣ Karbon (%d)" % sim.carbon, "color": Color(1.0, 0.38, 0.32)},
 		{"label": "⚡ Enerji (%d)" % sim.energy, "color": Color(1.0, 0.88, 0.35)},
 		{"label": "🌱 Gıda (%d)" % sim.food, "color": Color(0.42, 0.95, 0.52)},
 		{"label": "💧 Su (%d)" % sim.water, "color": Color(0.35, 0.82, 1.0)}

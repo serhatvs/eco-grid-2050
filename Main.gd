@@ -395,7 +395,7 @@ func _run_screenshot_tour() -> void:
 	sim.energy_history = [10, 12, 14, 15, 16, 17, 18]
 	sim.food_history = [10, 11, 12, 12, 13, 14, 14]
 	sim.water_history = [10, 10, 11, 13, 14, 15, 16]
-	var win_sub: String = "Karbon emisyonunu üst üste 5 gün boyunca 0'da tutarak Net-Sıfır zaferi kazandın!\n⚡ 18   🌱 14   💧 16   ☣️ 0\n%s" % sim.build_eco_report_card(true)
+	var win_sub: String = "Karbon emisyonunu üst üste 5 gün boyunca 0'da tutarak Net-Sıfır zaferi kazandın!\n⚡ 18   🌱 14   💧 16   ☣ 0\n%s" % sim.build_eco_report_card(true)
 	ui.show_end_screen(true, "🌱 SÜRDÜRÜLEBİLİR ŞEHİR KURULDU - KAZANDIN", win_sub, sim)
 	await get_tree().process_frame
 	await get_tree().process_frame
@@ -559,7 +559,7 @@ func _run_gameplay_recording() -> void:
 	sim.energy_history = [10, 13, 16, 18, 20, 21, 22]
 	sim.food_history = [10, 11, 14, 15, 16, 17, 18]
 	sim.water_history = [10, 10, 12, 15, 17, 18, 19]
-	var win_sub: String = "Karbon emisyonunu üst üste 5 gün boyunca 0'da tutarak Net-Sıfır zaferi kazandın!\n⚡ 22   🌱 18   💧 19   ☣️ 0\n%s" % sim.build_eco_report_card(true)
+	var win_sub: String = "Karbon emisyonunu üst üste 5 gün boyunca 0'da tutarak Net-Sıfır zaferi kazandın!\n⚡ 22   🌱 18   💧 19   ☣ 0\n%s" % sim.build_eco_report_card(true)
 	ui.show_end_screen(true, "🌱 COP31 NET-SIFIR İKLİM ZAFERİ", win_sub, sim)
 	modal_open = true
 	await _wait_movie_frames(80)
@@ -695,7 +695,7 @@ func _on_undo_pressed() -> void:
 		audio_mgr.update_climate_mood(sim.carbon)
 		ui.rebuild_perks_ui(sim)
 		ui.rebuild_hand_ui(sim.hand, selected_hand_index, discard_mode, sim)
-		ui.status_label.text = "↩️ Son oynanan kart hamlesi geri alındı! (Günlük geri alma hakkı kullanıldı)"
+		ui.status_label.text = "↩ Son oynanan kart hamlesi geri alındı! (Günlük geri alma hakkı kullanıldı)"
 		save_mgr.save_active_run(sim)
 		queue_redraw()
 
@@ -706,7 +706,7 @@ func _on_toggle_discard_mode() -> void:
 	if discard_mode:
 		selected_hand_index = -1
 		audio_mgr.play_tone(340.0, 260.0, 0.08)
-		ui.status_label.text = "🗑️ KART ATMA MODU AKTİF: Elden atmak istediğiniz kartlara tıklayın. Çıkmak için tekrar '🗑️ Kart At' tuşuna basın."
+		ui.status_label.text = "🗑 KART ATMA MODU AKTİF: Elden atmak istediğiniz kartlara tıklayın. Çıkmak için tekrar '🗑 Kart At' tuşuna basın."
 	else:
 		audio_mgr.play_tone(420.0, 520.0, 0.08)
 		ui.status_label.text = "Kart atma modu kapatıldı."
@@ -720,7 +720,7 @@ func _on_toggle_lens() -> void:
 	carbon_lens_active = not carbon_lens_active
 	if carbon_lens_active:
 		audio_mgr.play_tone(520.0, 720.0, 0.08)
-		ui.status_label.text = "👁️ KARBON LENSİ AÇILDI: Yeşil = Karbon Yutağı, Kırmızı = Kirletici Kaynak, Mavi = Nötr [Kapat: V]."
+		ui.status_label.text = "👁 KARBON LENSİ AÇILDI: Yeşil = Karbon Yutağı, Kırmızı = Kirletici Kaynak, Mavi = Nötr [Kapat: V]."
 	else:
 		audio_mgr.play_tone(720.0, 520.0, 0.08)
 		ui.status_label.text = "Karbon lensi kapatıldı [Kısayol: V]."
@@ -774,7 +774,7 @@ func _on_discard_card(index: int) -> void:
 	if sim.hand.is_empty():
 		discard_mode = false
 		ui.update_discard_button_style(false)
-	ui.status_label.text = "🗑️ %s elden atıldı." % title
+	ui.status_label.text = "🗑 %s elden atıldı." % title
 	ui.rebuild_hand_ui(sim.hand, selected_hand_index, discard_mode, sim)
 	queue_redraw()
 
@@ -1122,13 +1122,13 @@ func _try_play_card_at(coord: Vector2i) -> void:
 	var card_id: int = sim.hand[selected_hand_index]
 	if not sim.is_tile_valid_for_card(coord, card_id):
 		audio_mgr.play_tone(220.0, 160.0, 0.1)
-		ui.status_label.text = "⚠️ Bu kart seçilen kareye oynanamaz! Uygun bir kare seçin."
+		ui.status_label.text = "⚠ Bu kart seçilen kareye oynanamaz! Uygun bir kare seçin."
 		return
 
 	var preview: Dictionary = sim.preview_card_delta(coord, card_id)
 	if sim.energy + preview["e"] <= 0 or sim.food + preview["f"] <= 0 or sim.water + preview["w"] <= 0:
 		audio_mgr.play_tone(200.0, 140.0, 0.14)
-		ui.status_label.text = "⚠️ Kaynak yetersiz! Bu kartı oynamak bir kaynağınızı 0 veya altına düşürüyor."
+		ui.status_label.text = "⚠ Kaynak yetersiz! Bu kartı oynamak bir kaynağınızı 0 veya altına düşürüyor."
 		return
 
 	var prev_btype: int = sim.grid_building[coord.x][coord.y]
@@ -1244,7 +1244,7 @@ func _spawn_floating_text(coord: Vector2i, delta_dict: Dictionary) -> void:
 	if delta_dict["w"] != 0:
 		parts.append("%+d💧" % delta_dict["w"])
 	if delta_dict["c"] != 0:
-		parts.append("%+d☣️" % delta_dict["c"])
+		parts.append("%+d☣" % delta_dict["c"])
 	if parts.is_empty():
 		return
 	var pos: Vector2 = GameData.grid_to_iso(coord.x + 0.5, coord.y + 0.5) + Vector2(0.0, -34.0)
@@ -1379,11 +1379,11 @@ func _advance_day() -> void:
 		modal_open = true
 		ui.open_card_draft_modal(sim.day)
 
-	var status_msg: String = "📅 Gün %d başladı! Tur sonu üretimi uygulandı (⚡%+d, 🌱%+d, 💧%+d, ☣️%+d)." % [
+	var status_msg: String = "📅 Gün %d başladı! Tur sonu üretimi uygulandı (⚡%+d, 🌱%+d, 💧%+d, ☣%+d)." % [
 		sim.day, turn_prod["e"], turn_prod["f"], turn_prod["w"], turn_prod["c"]
 	]
 	if sim.day in [4, 9, 14, 19]:
-		status_msg += "  ⚠️ DİKKAT: Yarın İklim Krizi bekleniyor (%s)! Şebekenizi güçlendirin." % GameData.get_crisis_short_forecast(sim.upcoming_crisis_id)
+		status_msg += "  ⚠ DİKKAT: Yarın İklim Krizi bekleniyor (%s)! Şebekenizi güçlendirin." % GameData.get_crisis_short_forecast(sim.upcoming_crisis_id)
 	ui.status_label.text = status_msg
 
 func _on_dilemma_chosen(delta_dict: Dictionary, title: String, perk_id: String = "") -> void:
@@ -1395,14 +1395,14 @@ func _on_dilemma_chosen(delta_dict: Dictionary, title: String, perk_id: String =
 	if not perk_id.is_empty() and not sim.active_perks.has(perk_id):
 		sim.active_perks.append(perk_id)
 		var p_title: String = GameData.get_perk_title(perk_id)
-		sim.log_event("⚖️ Gün %d Yürürlüğe Giren Yasa: %s" % [sim.day, p_title])
+		sim.log_event("⚖ Gün %d Yürürlüğe Giren Yasa: %s" % [sim.day, p_title])
 	else:
-		sim.log_event("⚖️ Gün %d İklim Kararı: %s" % [sim.day, title])
+		sim.log_event("⚖ Gün %d İklim Kararı: %s" % [sim.day, title])
 	audio_mgr.play_fanfare()
 	audio_mgr.update_climate_mood(sim.carbon)
 	ui.update_hud_stats(sim)
 	ui.update_perks_display(sim)
-	ui.status_label.text = "⚖️ Karar ve Yasa Uygulandı: %s" % title
+	ui.status_label.text = "⚖ Karar ve Yasa Uygulandı: %s" % title
 	save_mgr.save_active_run(sim)
 	var ach_day: String = _check_live_achievements()
 	if not ach_day.is_empty():
@@ -1432,7 +1432,7 @@ func _on_perk_chosen(perk_id: String) -> void:
 	elif perk_id == "climate_diplomacy":
 		sim.hand.append(GameData.CardId.COP31)
 		sim.deck.append(GameData.CardId.COP31)
-		ui.show_quest_toast("🏛️ ÖDÜL KAZANILDI: COP31 DİPLOMASİ MERKEZİ!\nZirve anıtı kartı elinize ve destenize eklendi.")
+		ui.show_quest_toast("🏛 ÖDÜL KAZANILDI: COP31 DİPLOMASİ MERKEZİ!\nZirve anıtı kartı elinize ve destenize eklendi.")
 
 	ui.rebuild_perks_ui(sim)
 	ui.rebuild_hand_ui(sim.hand, selected_hand_index, discard_mode, sim)
@@ -1468,9 +1468,9 @@ func _check_end_conditions() -> bool:
 		elif sim.water <= 0:
 			reason = "Su rezervleri tükendi (💧 Su <= 0)."
 		else:
-			reason = "Karbon emisyonu kritik eşiği aştı (☣️ Karbon >= 100)."
+			reason = "Karbon emisyonu kritik eşiği aştı (☣ Karbon >= 100)."
 		var sub: String = "%s\nUlaşılan Gün: %d / %d\n%s" % [reason, sim.day, GameData.MAX_DAYS, sim.build_eco_report_card(false)]
-		ui.show_end_screen(false, "☣️ İKLİM ÇÖKÜŞÜ - KAYBETTİN", sub, sim)
+		ui.show_end_screen(false, "☣ İKLİM ÇÖKÜŞÜ - KAYBETTİN", sub, sim)
 		return true
 
 	if sim.current_scenario == 3:
@@ -1478,7 +1478,7 @@ func _check_end_conditions() -> bool:
 			save_mgr.mark_scenario_completed(3)
 			save_mgr.unlock_achievement("first_win")
 			audio_mgr.play_fanfare()
-			ui.show_quest_toast("♾️ SONSUZ DİRENÇ USTASI!\n25 gün başarıyla aşıldı! Sonsuz Sandbox modunda rekor kırmaya devam edebilirsiniz.")
+			ui.show_quest_toast("♾ SONSUZ DİRENÇ USTASI!\n25 gün başarıyla aşıldı! Sonsuz Sandbox modunda rekor kırmaya devam edebilirsiniz.")
 		if sim.zero_carbon_streak == GameData.ZERO_CARBON_WIN_DAYS and not save_mgr.unlocked_achievements.has("zero_carbon_hero"):
 			save_mgr.unlock_achievement("zero_carbon_hero")
 			audio_mgr.play_fanfare()
@@ -1498,7 +1498,7 @@ func _check_end_conditions() -> bool:
 		ui.update_start_screen_stats(save_mgr)
 		audio_mgr.play_fanfare()
 		var win_reason: String = "Karbon emisyonunu üst üste 5 gün boyunca 0'da tutarak Net-Sıfır zaferi kazandın!" if sim.zero_carbon_streak >= GameData.ZERO_CARBON_WIN_DAYS else "25 gün boyunca iklim krizlerine direnerek sürdürülebilir bir şehir kurdun!"
-		var sub: String = "%s\n⚡ %d   🌱 %d   💧 %d   ☣️ %d\n%s" % [win_reason, sim.energy, sim.food, sim.water, sim.carbon, sim.build_eco_report_card(true)]
+		var sub: String = "%s\n⚡ %d   🌱 %d   💧 %d   ☣ %d\n%s" % [win_reason, sim.energy, sim.food, sim.water, sim.carbon, sim.build_eco_report_card(true)]
 		ui.show_end_screen(true, "🌱 SÜRDÜRÜLEBİLİR ŞEHİR KURULDU - KAZANDIN", sub, sim)
 		return true
 

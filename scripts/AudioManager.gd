@@ -96,6 +96,14 @@ func update_climate_mood(carbon: int) -> void:
 
 var _audio_unlocked: bool = false
 
+func _can_play_sfx() -> bool:
+	if sfx_player == null or volume <= 0.01 or is_muted:
+		return false
+	if OS.has_feature("web") and not _audio_unlocked:
+		return false
+	return true
+
+
 func _ready() -> void:
 	sfx_player = AudioStreamPlayer.new()
 	var gen := AudioStreamGenerator.new()
@@ -115,7 +123,7 @@ func _ready() -> void:
 		music_player.play()
 
 func _input(event: InputEvent) -> void:
-	if not _audio_unlocked and (event is InputEventMouseButton or event is InputEventKey):
+	if not _audio_unlocked and (event is InputEventMouseButton or event is InputEventKey or event is InputEventScreenTouch):
 		_audio_unlocked = true
 		if music_player != null and not music_player.playing and music_volume > 0.01:
 			music_player.play()
@@ -224,7 +232,7 @@ func _exit_tree() -> void:
 		music_player.stop()
 
 func play_tone(freq_start: float, freq_end: float, duration: float = 0.12, vol: float = 0.22) -> void:
-	if sfx_player == null or volume <= 0.01:
+	if not _can_play_sfx():
 		return
 	if not sfx_player.playing:
 		sfx_player.play()
@@ -242,7 +250,7 @@ func play_tone(freq_start: float, freq_end: float, duration: float = 0.12, vol: 
 		playback.push_frame(Vector2(sample, sample))
 
 func play_fanfare() -> void:
-	if sfx_player == null or volume <= 0.01:
+	if not _can_play_sfx():
 		return
 	if not sfx_player.playing:
 		sfx_player.play()
@@ -264,7 +272,7 @@ func play_fanfare() -> void:
 		playback.push_frame(Vector2(sample, sample))
 
 func play_crisis_alarm() -> void:
-	if sfx_player == null or volume <= 0.01:
+	if not _can_play_sfx():
 		return
 	if not sfx_player.playing:
 		sfx_player.play()
@@ -283,7 +291,7 @@ func play_crisis_alarm() -> void:
 		playback.push_frame(Vector2(sample, sample))
 
 func play_upgrade(level: int = 2) -> void:
-	if sfx_player == null or volume <= 0.01:
+	if not _can_play_sfx():
 		return
 	if not sfx_player.playing:
 		sfx_player.play()
@@ -327,7 +335,7 @@ func play_upgrade(level: int = 2) -> void:
 			playback.push_frame(Vector2(s, s))
 
 func play_perk_unlocked() -> void:
-	if sfx_player == null or volume <= 0.01:
+	if not _can_play_sfx():
 		return
 	if not sfx_player.playing:
 		sfx_player.play()
@@ -349,7 +357,7 @@ func play_perk_unlocked() -> void:
 		playback.push_frame(Vector2(s * env, s * env))
 
 func play_dawn_sweep() -> void:
-	if sfx_player == null or volume <= 0.01:
+	if not _can_play_sfx():
 		return
 	if not sfx_player.playing:
 		sfx_player.play()
@@ -372,7 +380,7 @@ func play_dawn_sweep() -> void:
 		playback.push_frame(Vector2(s, s))
 
 func play_milestone() -> void:
-	if sfx_player == null or volume <= 0.01:
+	if not _can_play_sfx():
 		return
 	if not sfx_player.playing:
 		sfx_player.play()
@@ -452,7 +460,7 @@ func process_ambient(delta: float, carbon: int, food: int, energy: int) -> void:
 			play_hazard_drone()
 
 func play_nature_chirp() -> void:
-	if sfx_player == null or volume <= 0.01:
+	if not _can_play_sfx():
 		return
 	if not sfx_player.playing:
 		sfx_player.play()
@@ -474,7 +482,7 @@ func play_nature_chirp() -> void:
 		playback.push_frame(Vector2(s, s))
 
 func play_hazard_drone() -> void:
-	if sfx_player == null or volume <= 0.01:
+	if not _can_play_sfx():
 		return
 	if not sfx_player.playing:
 		sfx_player.play()
@@ -493,7 +501,7 @@ func play_hazard_drone() -> void:
 		playback.push_frame(Vector2(s, s))
 
 func play_card_draw() -> void:
-	if sfx_player == null or volume <= 0.01:
+	if not _can_play_sfx():
 		return
 	if not sfx_player.playing:
 		sfx_player.play()
@@ -513,7 +521,7 @@ func play_card_draw() -> void:
 		playback.push_frame(Vector2(sample, sample))
 
 func play_demolish() -> void:
-	if sfx_player == null or volume <= 0.01:
+	if not _can_play_sfx():
 		return
 	if not sfx_player.playing:
 		sfx_player.play()

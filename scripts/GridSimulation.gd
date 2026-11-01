@@ -228,7 +228,7 @@ func restore_undo_snapshot() -> bool:
 	quests_completed = undo_snapshot["quests_completed"].duplicate()
 	if undo_snapshot.has("event_log"):
 		event_log = undo_snapshot["event_log"].duplicate()
-	log_event("↩️ Gün %d: Son kart hamlesi geri alındı." % day)
+	log_event("↩ Gün %d: Son kart hamlesi geri alındı." % day)
 	undo_available = false
 	undo_remaining_today -= 1
 	undo_snapshot.clear()
@@ -249,7 +249,7 @@ func check_and_claim_quests() -> Array[String]:
 	if not quests_completed["forest"] and stats_forests_planted >= 3:
 		quests_completed["forest"] = true
 		carbon = clampi(carbon - 8, 0, GameData.MAX_CARBON)
-		notifications.append("🎯 GÖREV TAMAMLANDI (Yeşil Kuşak - 3 Orman): Ödül ☣️-8 Karbon!")
+		notifications.append("🎯 GÖREV TAMAMLANDI (Yeşil Kuşak - 3 Orman): Ödül ☣-8 Karbon!")
 	if not quests_completed["upgrade"] and stats_upgrades_done >= 2:
 		quests_completed["upgrade"] = true
 		food += 5
@@ -270,7 +270,7 @@ func check_and_claim_quests() -> Array[String]:
 		water += 6
 		food += 6
 		carbon = clampi(carbon - 10, 0, GameData.MAX_CARBON)
-		notifications.append("🎯 GÖREV TAMAMLANDI (Mega Mühendislik - 1x Lv.3★★): Ödül ⚡+6, 💧+6, 🌱+6, ☣️-10 Karbon!")
+		notifications.append("🎯 GÖREV TAMAMLANDI (Mega Mühendislik - 1x Lv.3★★): Ödül ⚡+6, 💧+6, 🌱+6, ☣-10 Karbon!")
 	return notifications
 
 func _spawn_special_map_features() -> void:
@@ -461,11 +461,11 @@ func get_card_unaffordable_reason(card_id: int) -> String:
 	var lack_e: bool = (energy <= req_e) and req_e > 0
 	var lack_w: bool = (water <= req_w) and req_w > 0
 	if lack_e and lack_w:
-		return "⚠️ ⚡ ve 💧 Yetersiz"
+		return "⚠ ⚡ ve 💧 Yetersiz"
 	elif lack_e:
-		return "⚠️ ⚡ Enerji Yetersiz"
+		return "⚠ ⚡ Enerji Yetersiz"
 	elif lack_w:
-		return "⚠️ 💧 Su Yetersiz"
+		return "⚠ 💧 Su Yetersiz"
 	return ""
 
 func is_tile_valid_for_card(coord: Vector2i, card_id: int) -> bool:
@@ -598,7 +598,7 @@ func get_synergy_description(coord: Vector2i, btype: int) -> String:
 			for n in neighbors:
 				var nb: int = grid_building[n.x][n.y]
 				if nb == GameData.BuildingType.FOREST:
-					return "✨ 0☣️ +1🌱 Park Sinerjisi!"
+					return "✨ 0☣ +1🌱 Park Sinerjisi!"
 				elif nb == GameData.BuildingType.BATTERY:
 					return "✨ +1⚡ Akıllı Şebeke Yedek Güç Sinerjisi!"
 		GameData.BuildingType.FARM:
@@ -612,9 +612,9 @@ func get_synergy_description(coord: Vector2i, btype: int) -> String:
 			for n in neighbors:
 				var nb: int = grid_building[n.x][n.y]
 				if nb == GameData.BuildingType.COP31:
-					return "✨ -2☣️ COP31 Küresel Karbon Kredisi Desteği!"
+					return "✨ -2☣ COP31 Küresel Karbon Kredisi Desteği!"
 				elif nb == GameData.BuildingType.HOUSING or nb == GameData.BuildingType.FOSSIL or nb == GameData.BuildingType.COAL_PLANT or nb == GameData.BuildingType.BIOCORRIDOR:
-					return "✨ -1☣️ Karbon Yutağı Bonusu!"
+					return "✨ -1☣ Karbon Yutağı Bonusu!"
 		GameData.BuildingType.RECYCLE:
 			for n in neighbors:
 				if grid_building[n.x][n.y] == GameData.BuildingType.HOUSING:
@@ -633,15 +633,15 @@ func get_synergy_description(coord: Vector2i, btype: int) -> String:
 			for n in neighbors:
 				var nb: int = grid_building[n.x][n.y]
 				if nb == GameData.BuildingType.COP31:
-					return "✨ -3☣️ COP31 Doğrudan Hava Yakalama Fonu!"
+					return "✨ -3☣ COP31 Doğrudan Hava Yakalama Fonu!"
 				elif nb == GameData.BuildingType.FOSSIL or nb == GameData.BuildingType.COAL_PLANT:
-					return "✨ -2☣️ Sanayi Karbon Yakalama!"
-					return "✨ -2☣️ Sanayi Karbon Yakalama!"
+					return "✨ -2☣ Sanayi Karbon Yakalama!"
+					return "✨ -2☣ Sanayi Karbon Yakalama!"
 		GameData.BuildingType.BIOCORRIDOR:
 			for n in neighbors:
 				var nb: int = grid_building[n.x][n.y]
 				if nb == GameData.BuildingType.FARM or nb == GameData.BuildingType.FOREST:
-					return "✨ +1🌱 -1☣️ Ekosistem Koridoru!"
+					return "✨ +1🌱 -1☣ Ekosistem Koridoru!"
 		GameData.BuildingType.BATTERY:
 			for n in neighbors:
 				var nb: int = grid_building[n.x][n.y]
@@ -890,7 +890,7 @@ func get_tile_inspector_text(coord: Vector2i) -> String:
 	var syn_count: int = get_synergy_links(coord, btype).size()
 	var lvl_str: String = "Lv.3★★ (Mega)" if blvl >= 3 else ("Lv.2★" if blvl == 2 else "Lv.1")
 	var syn_str: String = (" | ✨ %d Aktif Sinerji" % syn_count) if syn_count > 0 else ""
-	return "%s %s [%s] (%d,%d) — Net Tur Üretimi: ⚡%+d  🌱%+d  💧%+d  ☣️%+d%s" % [
+	return "%s %s [%s] (%d,%d) — Net Tur Üretimi: ⚡%+d  🌱%+d  💧%+d  ☣%+d%s" % [
 		vis["symbol"], vis["name"], lvl_str, coord.x, coord.y, yld["e"], yld["f"], yld["w"], yld["c"], syn_str
 	]
 
@@ -1003,7 +1003,7 @@ func detect_active_districts() -> Array[Dictionary]:
 						"color": Color(0.38, 1.0, 0.65),
 						"coords": cluster,
 						"bonus": {"e": 0, "f": 2, "w": 0, "c": -1},
-						"bonus_text": "🌱+2, ☣️-1 Karbon Yutağı"
+						"bonus_text": "🌱+2, ☣-1 Karbon Yutağı"
 					})
 
 	# 3. Döngüsel Eko-Köy (Circular Eco-Village): Konut + Tarım + Su Arıtma/Geri Dönüşüm
@@ -1159,10 +1159,10 @@ func apply_card_effects(coord: Vector2i, card_id: int) -> Dictionary:
 		action_str = "ile uzaktan tarandı ve keşif üssü açıldı!"
 	elif card_id == GameData.CardId.DEMOLISH:
 		action_str = "yıkıldı ve geri dönüştürüldü!"
-	log_event("📅 Gün %d: %s %s (⚡%+d, 🌱%+d, 💧%+d, ☣️%+d)" % [
+	log_event("📅 Gün %d: %s %s (⚡%+d, 🌱%+d, 💧%+d, ☣%+d)" % [
 		day, title, action_str, delta_dict["e"], delta_dict["f"], delta_dict["w"], delta_dict["c"]
 	])
-	var summary: String = "✅ %s %s Anlık ve Tur Üretimi: ⚡%+d, 🌱%+d, 💧%+d, ☣️%+d" % [
+	var summary: String = "✅ %s %s Anlık ve Tur Üretimi: ⚡%+d, 🌱%+d, 💧%+d, ☣%+d" % [
 		title, action_str, delta_dict["e"], delta_dict["f"], delta_dict["w"], delta_dict["c"]
 	]
 	return {
@@ -1302,7 +1302,7 @@ func get_climate_resilience_tier() -> String:
 	if pop >= 15000:
 		return "🌟 Net-Sıfır Metropol"
 	elif pop >= 8000:
-		return "🏙️ Sürdürülebilir Şehir"
+		return "🏙 Sürdürülebilir Şehir"
 	elif pop >= 4000:
 		return "🏡 Dirençli Kasaba"
 	else:
