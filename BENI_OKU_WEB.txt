@@ -1,0 +1,24 @@
+=====================================================
+🌍 ECO-GRID: 2050 — WEB / HTML5 DAĞITIM VE TEST REHBERİ
+=====================================================
+
+1. 🎮 ITCH.IO'YA YÜKLEME VE YAYINLAMA:
+-------------------------------------
+- itch.io hesabınızda yeni bir oyun sayfası açın veya mevcut sayfayı düzenleyin.
+- "Kind of project" seçeneğini "HTML" olarak ayarlayın.
+- Masaüstünüzdeki "Eco-Grid-2050-Web.zip" dosyasını doğrudan yükleyin.
+- Dosyanın yanında beliren "This file will be played in the browser" kutucuğunu işaretleyin.
+- "Embed options" bölümünde:
+  * Viewport dimensions: 1280 x 720 (Genişlik: 1280, Yükseklik: 720)
+  * "Fullscreen button" ve "Mobile friendly" kutucuklarını işaretleyin.
+- Sayfayı kaydedip "View game" diyerek doğrudan tarayıcı üzerinden oynayabilirsiniz!
+(Not: coi-serviceworker pakete entegre edilmiştir; SharedArrayBuffer başlıkları otomatik olarak sağlanır.)
+
+2. 💻 KENDİ BİLGİSAYARINIZDA (YEREL) TEST ETME:
+----------------------------------------------
+- Modern web tarayıcıları (Chrome, Edge, Firefox, Safari), CORS güvenlik kuralları 
+  gereği 'index.html' dosyasına doğrudan çift tıklandığında (file:/// protokolünde) 
+  WebAssembly (.wasm ve .pck) dosyalarının okunmasına izin vermez.
+- Bu sebeple paketteki 'Yerel_Web_Test.bat' dosyasına çift tıklayarak 
+  otomatik yerel sunucu ile oyunu anında tarayıcınızda açıp test edebilirsiniz.
+=====================================================
