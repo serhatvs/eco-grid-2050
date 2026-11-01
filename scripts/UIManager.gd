@@ -892,7 +892,10 @@ func _setup_modals(save_mgr: SaveManager) -> void:
 	main_btns_vbox.add_child(play_main_btn)
 
 	var menu_how_btn := Button.new()
-	menu_how_btn.text = "📖 NASIL OYNANIR & KOLEKSİYON"
+	menu_how_btn.text = "  NASIL OYNANIR & KOLEKSİYON"
+	if ResourceLoader.exists("res://assets/sprites/icon_book.png"):
+		menu_how_btn.icon = load("res://assets/sprites/icon_book.png")
+		menu_how_btn.expand_icon = true
 	menu_how_btn.custom_minimum_size = Vector2(260, 40)
 	menu_how_btn.add_theme_font_size_override("font_size", 14)
 	menu_how_btn.add_theme_stylebox_override("normal", GameData.make_stylebox(Color(0.14, 0.24, 0.34), Color(0.38, 0.68, 0.92), 2, 8))
@@ -904,7 +907,10 @@ func _setup_modals(save_mgr: SaveManager) -> void:
 	main_btns_vbox.add_child(menu_how_btn)
 
 	var menu_settings_btn := Button.new()
-	menu_settings_btn.text = "⚙ AYARLAR (SETTINGS)"
+	menu_settings_btn.text = "  AYARLAR (SETTINGS)"
+	if ResourceLoader.exists("res://assets/sprites/icon_gear.png"):
+		menu_settings_btn.icon = load("res://assets/sprites/icon_gear.png")
+		menu_settings_btn.expand_icon = true
 	menu_settings_btn.custom_minimum_size = Vector2(260, 40)
 	menu_settings_btn.add_theme_font_size_override("font_size", 14)
 	menu_settings_btn.add_theme_stylebox_override("normal", GameData.make_stylebox(Color(0.18, 0.22, 0.28), Color(0.55, 0.64, 0.75), 2, 8))
@@ -938,7 +944,7 @@ func _setup_modals(save_mgr: SaveManager) -> void:
 	mode_select_panel.add_child(mode_vbox)
 
 	var mode_title := Label.new()
-	mode_title.text = "🗺 SENARYO / OYUN MODU SEÇİMİ"
+	mode_title.text = "SENARYO / OYUN MODU SEÇİMİ"
 	mode_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	mode_title.add_theme_font_size_override("font_size", 24)
 	mode_title.add_theme_color_override("font_color", Color(0.45, 0.96, 0.68))
