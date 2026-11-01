@@ -48,10 +48,16 @@ func _ready() -> void:
 	randomize()
 	if ResourceLoader.exists("res://assets/fonts/Outfit.ttf"):
 		var main_font: Font = load("res://assets/fonts/Outfit.ttf")
+		var fbs: Array[Font] = []
+		if ResourceLoader.exists("res://assets/fonts/SeguiSym.ttf"):
+			var sym_font: Font = load("res://assets/fonts/SeguiSym.ttf")
+			if sym_font != null:
+				fbs.append(sym_font)
 		if ResourceLoader.exists("res://assets/fonts/NotoEmoji.ttf"):
 			var emoji_font: Font = load("res://assets/fonts/NotoEmoji.ttf")
 			if emoji_font != null:
-				main_font.fallbacks = [emoji_font]
+				fbs.append(emoji_font)
+		main_font.fallbacks = fbs
 		ThemeDB.fallback_font = main_font
 	elif ResourceLoader.exists("res://assets/fonts/NotoEmoji.ttf"):
 		var emoji_font: Font = load("res://assets/fonts/NotoEmoji.ttf")

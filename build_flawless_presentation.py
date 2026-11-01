@@ -61,7 +61,7 @@ C_GRAY = RGBColor(90, 105, 120)
 
 def set_p(p, text, size=15, bold=False, color=C_DARK, space_after=6, space_before=0, align=PP_ALIGN.LEFT):
     p.text = text
-    p.font.name = 'Outfit'
+    p.font.name = 'Segoe UI'
     p.font.size = Pt(size)
     p.font.bold = bold
     p.font.color.rgb = color
