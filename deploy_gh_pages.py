@@ -50,7 +50,7 @@ print("Status changes:\n", res_status.stdout[:500])
 
 if res_status.stdout.strip():
     commit_res = subprocess.run(
-        ["git", "commit", "-m", "fix: 100% symbol rendering, cache-busting ecogrid_v2.pck, and clean UI spacing"],
+        ["git", "commit", "-m", "fix: full-color RGBA texture icons, ecogrid_v3 cache-busting, zero emoji rendering bugs"],
         cwd=TEMP_DIR,
         capture_output=True,
         text=True

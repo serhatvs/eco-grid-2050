@@ -137,24 +137,44 @@ func setup_ui(save_mgr: SaveManager) -> void:
 	top_hbox.add_theme_constant_override("separation", 6)
 	top_bar.add_child(top_hbox)
 
+	var brand_box := HBoxContainer.new()
+	brand_box.add_theme_constant_override("separation", 6)
+	top_hbox.add_child(brand_box)
+
+	var top_globe := TextureRect.new()
+	if ResourceLoader.exists("res://assets/sprites/icon_earth.png"):
+		top_globe.texture = load("res://assets/sprites/icon_earth.png")
+	top_globe.custom_minimum_size = Vector2(18, 18)
+	top_globe.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	top_globe.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	top_globe.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	brand_box.add_child(top_globe)
+
 	var brand_label := Label.new()
-	brand_label.text = "🌍 ECO-GRID"
+	brand_label.text = "ECO-GRID"
 	brand_label.add_theme_font_size_override("font_size", 14)
 	brand_label.add_theme_color_override("font_color", Color(0.45, 0.95, 0.65))
-	top_hbox.add_child(brand_label)
+	brand_box.add_child(brand_label)
 
-	energy_label = _create_stat_label(top_hbox, Color(1.0, 0.88, 0.32))
-	energy_label.tooltip_text = "⚡ ENERJİ ŞEBEKESİ:\nŞehrin temiz ve fosil güç rezervi.\n0 veya altına düşerse şebeke çöker ve oyun kaybedilir!\nHer gün binalarınızdan gelen net üretim parantez içinde gösterilir."
+	energy_label = _create_stat_widget(top_hbox, "res://assets/sprites/icon_energy.png", Color(1.0, 0.88, 0.32), "⚡ ENERJİ ŞEBEKESİ:\nŞehrin temiz ve fosil güç rezervi.\n0 veya altına düşerse şebeke çöker ve oyun kaybedilir!\nHer gün binalarınızdan gelen net üretim parantez içinde gösterilir.")
 
-	food_label = _create_stat_label(top_hbox, Color(0.52, 0.94, 0.42))
-	food_label.tooltip_text = "🌱 GIDA GÜVENLİĞİ:\nDikey tarım ve biyo-koridorlardan üretilir.\n0 veya altına düşerse kıtlık başlar ve oyun kaybedilir!"
+	food_label = _create_stat_widget(top_hbox, "res://assets/sprites/icon_food.png", Color(0.52, 0.94, 0.42), "🌱 GIDA GÜVENLİĞİ:\nDikey tarım ve biyo-koridorlardan üretilir.\n0 veya altına düşerse kıtlık başlar ve oyun kaybedilir!")
 
-	water_label = _create_stat_label(top_hbox, Color(0.42, 0.82, 1.0))
-	water_label.tooltip_text = "💧 SU REZERVLERİ:\nDoğal göller, arıtma tesisleri ve geri dönüşüm ile sağlanır.\n0 veya altına düşerse kuraklık felaketinde şehir çöker!"
+	water_label = _create_stat_widget(top_hbox, "res://assets/sprites/icon_water.png", Color(0.42, 0.82, 1.0), "💧 SU REZERVLERİ:\nDoğal göller, arıtma tesisleri ve geri dönüşüm ile sağlanır.\n0 veya altına düşerse kuraklık felaketinde şehir çöker!")
 
 	var carbon_box := HBoxContainer.new()
 	carbon_box.add_theme_constant_override("separation", 5)
 	top_hbox.add_child(carbon_box)
+
+	var tr_carbon := TextureRect.new()
+	if ResourceLoader.exists("res://assets/sprites/icon_carbon.png"):
+		tr_carbon.texture = load("res://assets/sprites/icon_carbon.png")
+	tr_carbon.custom_minimum_size = Vector2(16, 16)
+	tr_carbon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	tr_carbon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	tr_carbon.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	tr_carbon.mouse_filter = Control.MOUSE_FILTER_PASS
+	carbon_box.add_child(tr_carbon)
 
 	carbon_label = _create_stat_label(carbon_box, Color(1.0, 0.52, 0.45))
 	carbon_label.tooltip_text = "☣ KARBON EMİSYONU (0 - 100):\nKömür ve fosil santralleri atmosferi kirletir.\n100'e ulaşırsa küresel ısınma kaynaklı iklim felaketi tetiklenir!\nKent ormanları ve Karbon Yakalama (CCS) ile düşürün."
@@ -688,12 +708,25 @@ func _setup_modals(save_mgr: SaveManager) -> void:
 	start_vbox.add_theme_constant_override("separation", 16)
 	start_screen_panel.add_child(start_vbox)
 
+	var title_hbox := HBoxContainer.new()
+	title_hbox.alignment = BoxContainer.ALIGNMENT_CENTER
+	title_hbox.add_theme_constant_override("separation", 12)
+	start_vbox.add_child(title_hbox)
+
+	var start_globe := TextureRect.new()
+	if ResourceLoader.exists("res://assets/sprites/icon_earth.png"):
+		start_globe.texture = load("res://assets/sprites/icon_earth.png")
+	start_globe.custom_minimum_size = Vector2(40, 40)
+	start_globe.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	start_globe.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	start_globe.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	title_hbox.add_child(start_globe)
+
 	var start_title := Label.new()
-	start_title.text = "🌍 ECO-GRID: 2050"
-	start_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	start_title.text = "ECO-GRID: 2050"
 	start_title.add_theme_font_size_override("font_size", 32)
 	start_title.add_theme_color_override("font_color", Color(0.45, 0.96, 0.68))
-	start_vbox.add_child(start_title)
+	title_hbox.add_child(start_title)
 
 	var start_sub := Label.new()
 	start_sub.text = "COP31 İklim Dirençli Şehirler & Sürdürülebilirlik Strateji Simülasyonu"
@@ -1278,7 +1311,7 @@ func _setup_deck_inspector_panel() -> void:
 	vbox.add_child(tab_hbox)
 
 	deck_tab_btn = Button.new()
-	deck_tab_btn.text = "🃏 Çekilme Destesi"
+	deck_tab_btn.text = "❖ Çekilme Destesi"
 	deck_tab_btn.custom_minimum_size = Vector2(210, 32)
 	deck_tab_btn.pressed.connect(func() -> void:
 		_inspector_view_discard = false
@@ -1817,7 +1850,7 @@ func update_slot_buttons_ui(save_mgr: SaveManager) -> void:
 
 func update_start_screen_stats(save_mgr: SaveManager) -> void:
 	if start_stats_label != null:
-		start_stats_label.text = "[ YUVA %d ]   ★ En Yüksek Eko-Skor: %d   |   ◈ Başarımlar: %d / %d   |   🃏 Açılan Kartlar: %d / %d" % [
+		start_stats_label.text = "[ YUVA %d ]   ★ En Yüksek Eko-Skor: %d   |   ◈ Başarımlar: %d / %d   |   ❖ Açılan Kartlar: %d / %d" % [
 			save_mgr.current_slot,
 			save_mgr.high_score,
 			save_mgr.unlocked_achievements.size(),
@@ -2322,9 +2355,12 @@ func rebuild_perks_ui(sim: GridSimulation) -> void:
 	perks_vbox.add_child(tools_hbox)
 
 	var deck_inspect_btn := Button.new()
-	deck_inspect_btn.text = "🃏 %d" % sim.deck.size()
+	deck_inspect_btn.text = " %d" % sim.deck.size()
+	if ResourceLoader.exists("res://assets/sprites/icon_cards.png"):
+		deck_inspect_btn.icon = load("res://assets/sprites/icon_cards.png")
+		deck_inspect_btn.expand_icon = true
 	deck_inspect_btn.tooltip_text = "Destenizdeki kart dağılımı ve çekilme olasılıkları [Kısayol: K]"
-	deck_inspect_btn.custom_minimum_size = Vector2(0, 26)
+	deck_inspect_btn.custom_minimum_size = Vector2(48, 26)
 	deck_inspect_btn.add_theme_font_size_override("font_size", 12)
 	deck_inspect_btn.add_theme_stylebox_override("normal", GameData.make_stylebox(Color(0.12, 0.24, 0.22), Color(0.38, 0.78, 0.65), 1, 4))
 	deck_inspect_btn.add_theme_stylebox_override("hover", GameData.make_stylebox(Color(0.18, 0.35, 0.30), Color(0.55, 0.95, 0.80), 1, 4))
@@ -2702,23 +2738,23 @@ func update_hand_fan_layout(lerp_weight: float, selected_hand_index: int, modal_
 func update_hud_stats(sim: GridSimulation, preview_delta: Dictionary = {}) -> void:
 	var prod: Dictionary = sim.calculate_total_turn_production()
 	if preview_delta.is_empty():
-		energy_label.text = "⚡ %d (%+d)" % [sim.energy, prod["e"]]
+		energy_label.text = "%d (%+d)" % [sim.energy, prod["e"]]
 		energy_label.add_theme_color_override("font_color", Color(1.0, 0.88, 0.32))
 		energy_label.tooltip_text = "⚡ ENERJİ ŞEBEKESİ:\nMevcut Rezerv: %d ⚡  |  Net Günlük Akış: %+d ⚡\n(0 veya altına düşerse şebeke çöker!)" % [sim.energy, prod["e"]]
 
-		food_label.text = "🌱 %d (%+d)" % [sim.food, prod["f"]]
+		food_label.text = "%d (%+d)" % [sim.food, prod["f"]]
 		food_label.add_theme_color_override("font_color", Color(0.52, 0.94, 0.42))
 		food_label.tooltip_text = "🌱 GIDA GÜVENLİĞİ:\nMevcut Rezerv: %d 🌱  |  Net Günlük Akış: %+d 🌱\n(0 veya altına düşerse kıtlık başlar!)" % [sim.food, prod["f"]]
 
-		water_label.text = "💧 %d (%+d)" % [sim.water, prod["w"]]
+		water_label.text = "%d (%+d)" % [sim.water, prod["w"]]
 		water_label.add_theme_color_override("font_color", Color(0.42, 0.82, 1.0))
 		water_label.tooltip_text = "💧 SU REZERVLERİ:\nMevcut Rezerv: %d 💧  |  Net Günlük Akış: %+d 💧\n(0 veya altına düşerse kuraklık başlar!)" % [sim.water, prod["w"]]
 
 		if sim.carbon >= 70:
-			carbon_label.text = "🚨 ☣ %d/%d (%+d) [KRİTİK!]" % [sim.carbon, GameData.MAX_CARBON, prod["c"]]
+			carbon_label.text = "🚨 %d/%d (%+d) [KRİTİK!]" % [sim.carbon, GameData.MAX_CARBON, prod["c"]]
 			carbon_label.add_theme_color_override("font_color", Color(1.0, 0.28, 0.24))
 		else:
-			carbon_label.text = "☣ %d/%d (%+d)" % [sim.carbon, GameData.MAX_CARBON, prod["c"]]
+			carbon_label.text = "%d/%d (%+d)" % [sim.carbon, GameData.MAX_CARBON, prod["c"]]
 			carbon_label.add_theme_color_override("font_color", Color(1.0, 0.52, 0.45))
 		carbon_label.tooltip_text = "☣ KARBON BİLANÇOSU:\nMevcut Atmosferik Karbon: %d/%d  |  Net Günlük: %+d ☣\n(100'e ulaşırsa küresel ısınma felaketi tetiklenir!)" % [sim.carbon, GameData.MAX_CARBON, prod["c"]]
 		carbon_bar.value = sim.carbon
@@ -2733,16 +2769,16 @@ func update_hud_stats(sim: GridSimulation, preview_delta: Dictionary = {}) -> vo
 		var dw: int = preview_delta.get("w", 0)
 		var dc: int = preview_delta.get("c", 0)
 
-		energy_label.text = "⚡ %d➔%d (%+d)" % [sim.energy, ne, prod["e"] + de]
+		energy_label.text = "%d➔%d (%+d)" % [sim.energy, ne, prod["e"] + de]
 		energy_label.add_theme_color_override("font_color", Color(1.0, 1.0, 0.45) if de >= 0 else Color(1.0, 0.42, 0.35))
 
-		food_label.text = "🌱 %d➔%d (%+d)" % [sim.food, nf, prod["f"] + df]
+		food_label.text = "%d➔%d (%+d)" % [sim.food, nf, prod["f"] + df]
 		food_label.add_theme_color_override("font_color", Color(0.65, 1.0, 0.55) if df >= 0 else Color(1.0, 0.42, 0.35))
 
-		water_label.text = "💧 %d➔%d (%+d)" % [sim.water, nw, prod["w"] + dw]
+		water_label.text = "%d➔%d (%+d)" % [sim.water, nw, prod["w"] + dw]
 		water_label.add_theme_color_override("font_color", Color(0.60, 0.90, 1.0) if dw >= 0 else Color(1.0, 0.42, 0.35))
 
-		carbon_label.text = "☣ %d➔%d (%+d)" % [sim.carbon, nc, prod["c"] + dc]
+		carbon_label.text = "%d➔%d (%+d)" % [sim.carbon, nc, prod["c"] + dc]
 		carbon_label.add_theme_color_override("font_color", Color(0.45, 1.0, 0.65) if dc <= 0 else Color(1.0, 0.42, 0.35))
 		carbon_bar.value = nc
 
@@ -3176,7 +3212,31 @@ func build_timeline_chart(sim: GridSimulation, chart_w: float = 640.0, chart_h: 
 
 	return container
 
+func _create_stat_widget(parent: Node, icon_path: String, color: Color, tooltip: String) -> Label:
+	var box := HBoxContainer.new()
+	box.add_theme_constant_override("separation", 4)
+	parent.add_child(box)
+
+	if ResourceLoader.exists(icon_path):
+		var tr := TextureRect.new()
+		tr.texture = load(icon_path)
+		tr.custom_minimum_size = Vector2(16, 16)
+		tr.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		tr.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		tr.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		tr.mouse_filter = Control.MOUSE_FILTER_PASS
+		box.add_child(tr)
+
+	var lbl := Label.new()
+	lbl.mouse_filter = Control.MOUSE_FILTER_STOP
+	lbl.add_theme_font_size_override("font_size", 14)
+	lbl.add_theme_color_override("font_color", color)
+	lbl.tooltip_text = tooltip
+	box.add_child(lbl)
+	return lbl
+
 func _create_stat_label(parent: Node, color: Color) -> Label:
+
 	var lbl := Label.new()
 	lbl.mouse_filter = Control.MOUSE_FILTER_STOP
 	lbl.add_theme_font_size_override("font_size", 14)
