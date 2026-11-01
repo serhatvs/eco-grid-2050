@@ -85,6 +85,10 @@ var is_fast_speed: bool = false
 var settings_panel: PanelContainer
 var start_screen_panel: PanelContainer
 var start_stats_label: Label
+var start_stat_slot_lbl: Label
+var start_stat_score_lbl: Label
+var start_stat_ach_lbl: Label
+var start_stat_cards_lbl: Label
 var resume_btn: Button
 var mode_select_panel: PanelContainer
 var scen1_btn_node: Button
@@ -735,11 +739,74 @@ func _setup_modals(save_mgr: SaveManager) -> void:
 	start_sub.add_theme_color_override("font_color", Color(0.82, 0.90, 0.86))
 	start_vbox.add_child(start_sub)
 
-	start_stats_label = Label.new()
-	start_stats_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	start_stats_label.add_theme_font_size_override("font_size", 13)
-	start_stats_label.add_theme_color_override("font_color", Color(1.0, 0.86, 0.38))
-	start_vbox.add_child(start_stats_label)
+	var stats_hbox := HBoxContainer.new()
+	stats_hbox.alignment = BoxContainer.ALIGNMENT_CENTER
+	stats_hbox.add_theme_constant_override("separation", 16)
+	start_vbox.add_child(stats_hbox)
+
+	# Slot
+	var slot_box := HBoxContainer.new()
+	slot_box.add_theme_constant_override("separation", 5)
+	var tr_save := TextureRect.new()
+	if ResourceLoader.exists("res://assets/sprites/icon_save.png"):
+		tr_save.texture = load("res://assets/sprites/icon_save.png")
+	tr_save.custom_minimum_size = Vector2(16, 16)
+	tr_save.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	tr_save.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	slot_box.add_child(tr_save)
+	start_stat_slot_lbl = Label.new()
+	start_stat_slot_lbl.add_theme_font_size_override("font_size", 13)
+	start_stat_slot_lbl.add_theme_color_override("font_color", Color(0.85, 0.85, 0.95))
+	slot_box.add_child(start_stat_slot_lbl)
+	stats_hbox.add_child(slot_box)
+
+	# Score
+	var score_box := HBoxContainer.new()
+	score_box.add_theme_constant_override("separation", 5)
+	var tr_trophy := TextureRect.new()
+	if ResourceLoader.exists("res://assets/sprites/icon_trophy.png"):
+		tr_trophy.texture = load("res://assets/sprites/icon_trophy.png")
+	tr_trophy.custom_minimum_size = Vector2(16, 16)
+	tr_trophy.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	tr_trophy.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	score_box.add_child(tr_trophy)
+	start_stat_score_lbl = Label.new()
+	start_stat_score_lbl.add_theme_font_size_override("font_size", 13)
+	start_stat_score_lbl.add_theme_color_override("font_color", Color(1.0, 0.86, 0.38))
+	score_box.add_child(start_stat_score_lbl)
+	stats_hbox.add_child(score_box)
+
+	# Achievements
+	var ach_box := HBoxContainer.new()
+	ach_box.add_theme_constant_override("separation", 5)
+	var tr_medal := TextureRect.new()
+	if ResourceLoader.exists("res://assets/sprites/icon_medal.png"):
+		tr_medal.texture = load("res://assets/sprites/icon_medal.png")
+	tr_medal.custom_minimum_size = Vector2(16, 16)
+	tr_medal.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	tr_medal.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	ach_box.add_child(tr_medal)
+	start_stat_ach_lbl = Label.new()
+	start_stat_ach_lbl.add_theme_font_size_override("font_size", 13)
+	start_stat_ach_lbl.add_theme_color_override("font_color", Color(0.95, 0.75, 0.45))
+	ach_box.add_child(start_stat_ach_lbl)
+	stats_hbox.add_child(ach_box)
+
+	# Cards
+	var cards_box := HBoxContainer.new()
+	cards_box.add_theme_constant_override("separation", 5)
+	var tr_cards := TextureRect.new()
+	if ResourceLoader.exists("res://assets/sprites/icon_cards.png"):
+		tr_cards.texture = load("res://assets/sprites/icon_cards.png")
+	tr_cards.custom_minimum_size = Vector2(16, 16)
+	tr_cards.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	tr_cards.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	cards_box.add_child(tr_cards)
+	start_stat_cards_lbl = Label.new()
+	start_stat_cards_lbl.add_theme_font_size_override("font_size", 13)
+	start_stat_cards_lbl.add_theme_color_override("font_color", Color(0.55, 0.95, 0.80))
+	cards_box.add_child(start_stat_cards_lbl)
+	stats_hbox.add_child(cards_box)
 
 	var slot_panel := PanelContainer.new()
 	slot_panel.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
@@ -756,12 +823,22 @@ func _setup_modals(save_mgr: SaveManager) -> void:
 	slot_vbox.add_theme_constant_override("separation", 6)
 	slot_panel.add_child(slot_vbox)
 
+	var slot_header_box := HBoxContainer.new()
+	slot_header_box.alignment = BoxContainer.ALIGNMENT_CENTER
+	slot_header_box.add_theme_constant_override("separation", 6)
+	var tr_folder := TextureRect.new()
+	if ResourceLoader.exists("res://assets/sprites/icon_folder.png"):
+		tr_folder.texture = load("res://assets/sprites/icon_folder.png")
+	tr_folder.custom_minimum_size = Vector2(16, 16)
+	tr_folder.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	tr_folder.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	slot_header_box.add_child(tr_folder)
 	var slot_title := Label.new()
-	slot_title.text = "◈ OYUN KAYIT PROFİLLERİ (SAVE SLOTS)"
-	slot_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	slot_title.text = "OYUN KAYIT PROFİLLERİ (SAVE SLOTS)"
 	slot_title.add_theme_font_size_override("font_size", 12)
 	slot_title.add_theme_color_override("font_color", Color(0.48, 0.88, 1.0))
-	slot_vbox.add_child(slot_title)
+	slot_header_box.add_child(slot_title)
+	slot_vbox.add_child(slot_header_box)
 
 	var slot_hbox := HBoxContainer.new()
 	slot_hbox.alignment = BoxContainer.ALIGNMENT_CENTER
@@ -1849,15 +1926,16 @@ func update_slot_buttons_ui(save_mgr: SaveManager) -> void:
 		settings_reset_save_btn.text = "⚠ Yuva %d İlerlemesini Sıfırla" % save_mgr.current_slot
 
 func update_start_screen_stats(save_mgr: SaveManager) -> void:
+	if start_stat_slot_lbl != null:
+		start_stat_slot_lbl.text = "[ YUVA %d ]" % save_mgr.current_slot
+	if start_stat_score_lbl != null:
+		start_stat_score_lbl.text = "En Yüksek Skor: %d" % save_mgr.high_score
+	if start_stat_ach_lbl != null:
+		start_stat_ach_lbl.text = "Başarımlar: %d/%d" % [save_mgr.unlocked_achievements.size(), GameData.ACHIEVEMENTS.size()]
+	if start_stat_cards_lbl != null:
+		start_stat_cards_lbl.text = "Kartlar: %d/%d" % [save_mgr.unlocked_cards.size(), GameData.CARDS.size()]
 	if start_stats_label != null:
-		start_stats_label.text = "[ YUVA %d ]   ★ En Yüksek Eko-Skor: %d   |   ◈ Başarımlar: %d / %d   |   ❖ Açılan Kartlar: %d / %d" % [
-			save_mgr.current_slot,
-			save_mgr.high_score,
-			save_mgr.unlocked_achievements.size(),
-			GameData.ACHIEVEMENTS.size(),
-			save_mgr.unlocked_cards.size(),
-			GameData.CARDS.size()
-		]
+		start_stats_label.text = "" 
 	if resume_btn != null:
 		if save_mgr.has_active_run():
 			resume_btn.visible = true
