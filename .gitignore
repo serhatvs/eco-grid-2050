@@ -19,6 +19,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 *.tmp
+slide*.png
 
 # OS generated files
 .DS_Store
